@@ -86,7 +86,7 @@ local sets = {
     },
     ['ws'] = {
         Head = 'Maat\'s Cap',
-        Neck = 'Halting Stole',
+        Neck = 'Fotia Gorget',
         Ear1 = 'Hollow Earring',
         Ear2 = 'Aesir Ear Pendant',
         Body = 'Assault Jerkin',
@@ -154,7 +154,7 @@ profile.OnLoad = function()
 		AshitaCore:GetChatManager():QueueCommand(1, '/macro set 1');
     end
 
-    AshitaCore:GetChatManager():QueueCommand(-1, '/alias /rdm /lac fwd');
+    AshitaCore:GetChatManager():QueueCommand(-1, '/alias /thf /lac fwd');
     AshitaCore:GetChatManager():QueueCommand(-1, '/bind !F1 /lac fwd tpset');
 	AshitaCore:GetChatManager():QueueCommand(-1, '/bind !F2 /lac fwd th');
 
@@ -163,6 +163,9 @@ profile.OnLoad = function()
 end
 
 profile.OnUnload = function()
+	AshitaCore:GetChatManager():QueueCommand(-1, '/alias delete /thf');
+    AshitaCore:GetChatManager():QueueCommand(-1, '/unbind !F1');
+	AshitaCore:GetChatManager():QueueCommand(-1, '/unbind !F2');
 end
 
 profile.HandleCommand = function(args)
