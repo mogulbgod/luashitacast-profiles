@@ -147,6 +147,7 @@ local sets = {
 };
 
 local elements = T{
+	-- Change these grips for the grips you prefer for those elements
     ['Earth'] = T{'Omni Grip'},
     ['Water'] = T{'Omni Grip'},
     ['Wind'] = T{'Omni Grip'},
@@ -160,7 +161,7 @@ local elements = T{
 };
 
 local Towns = T{'Aht Urhgan Whitegate', 'Al Zahbi', 'Bastok Markets [S]', 'Bastok Markets', 'Bastok Mines', 'Bastok-Jeuno Airship', 'Celennia Memorial Library', 'Chateau d\'Oraguille', 'Eastern Adoulin', 'Heavens Tower', 'Kazham', 'Kazham-Jeuno Airship', 'Lower Jeuno', 'Metalworks', 'Mhaura', 'Mog Garden', 'Nashmau', 'Norg', 'Northern San d\'Oria', 'Port Bastok', 'Port Jeuno', 'Port San d\'Oria', 'Port Windurst', 'Rabao', 'Ru\'Lude Gardens', 'San d\'Oria-Jeuno Airship', 'Selbina', 'Southern San d\'Oria [S]', 'Southern San d\'Oria', 'Tavnazian Safehold', 'Upper Jeuno', 'Western Adoulin', 'Windurst Walls', 'Windurst Waters [S]', 'Windurst Waters', 'Windurst Woods', 'Windurst-Jeuno Airship',};
-local Staves = T{'Chatoyant Staff', 'Baqil Staff', 'Iridial Staff'};
+local Staves = T{'Chatoyant Staff', 'Baqil Staff', 'Iridial Staff'}; --Staves that you use from highest priority to lowest
 
 profile.Sets = sets;
 
@@ -171,6 +172,7 @@ profile.OnLoad = function()
     gSettings.AllowAddSet = true;
 	local player = gData.GetPlayer();
 
+	-- These will change your macro book and page automatically depending on your subjob so pic subjob first.
 	if (player.SubJob == 'RDM') then
 		AshitaCore:GetChatManager():QueueCommand(1, '/macro book 6');
 		AshitaCore:GetChatManager():QueueCommand(1, '/macro set 1');
@@ -215,7 +217,7 @@ profile.HandleDefault = function()
         -- but this will not stay on since other gear for cure, nukes and such is more important
         gFunc.EquipSet(sets.sublimation);
     else
-        gFunc.Equip('Body', 'Vermillion Cloak');
+        gFunc.Equip('Body', 'Vermillion Cloak'); --Change your body to whatever refresh piece you have.
     end
 
     if (player.Status == 'Engaged') then
@@ -234,7 +236,7 @@ profile.HandleDefault = function()
     end
 
     if (player.IsMoving) then
-        gFunc.Equip('Feet', 'Herald\'s Gaiters');
+        gFunc.Equip('Feet', 'Herald\'s Gaiters'); -- Movement speed when moving
     end
 
     lachelperlib.HandleDefault();
