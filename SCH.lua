@@ -228,11 +228,17 @@ profile.HandleDefault = function()
         if (lachelperlib.towns:contains(place.Area)) then
             gFunc.EquipSet(sets.idle_town);
         else
-            gFunc.EquipSet(sets.idle);
+			if (sub_active > 0) then -- This checks to see if Sublimation is active and if it is it keeps the sublimation set on
+			-- but this will not stay on since other gear for cure, nukes and such is more important
+				gFunc.EquipSet(sets.sublimation);
+			elseif (sub_complete > 0) then
+				gFunc.Equip('Body', 'Vermillion Cloak'); --Change your body to whatever refresh piece you have.
+			else
+				gFunc.EquipSet(sets.idle);
+			end
+            
         end
-        if (sub_active > 0) then
-            gFunc.EquipSet(sets.sublimation);
-        end
+        
     end
 
     if (player.IsMoving) then
