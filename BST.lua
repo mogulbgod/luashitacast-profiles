@@ -10,7 +10,7 @@ local sets = {
         Ring1 = 'Succor Ring',
         Ring2 = 'Warp Ring',
         Back = 'Shadow Mantle',
-        Waist = 'Selemnus Belt',
+        Waist = 'Beastly Girdle',
         Legs = 'Askar Dirs',
         Feet = 'Askar Gambieras',
     },
@@ -129,7 +129,7 @@ local sets = {
         Feet = 'Askar Gambieras',
     },
     ['callbeast'] = {
-        Head = 'Panther Mask +1',
+        Head = 'Maat\'s Cap',
         Neck = 'Beast Whistle',
         Ear1 = 'Delta Earring',
         --Ear2 = 'Megasco Earring',
@@ -156,7 +156,7 @@ local sets = {
         Legs = 'Monster Trousers',
         Feet = 'Monster Gaiters',
     },
-    ['tame'] = { --Tame uses  your INT compared against enemy INT
+    ['tame'] = { --Tame uses your INT compared against enemy INT
         Ammo = 'Phtm. Tathlum',
         Head = 'Maat\'s Cap',
         Neck = 'Aife\'s Medal',

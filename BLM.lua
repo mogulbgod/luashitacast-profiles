@@ -15,6 +15,36 @@ local sets = {
         Legs = 'Sorcerer\'s Tonban',
         Feet = 'Rostrum Pumps',--2% or 0.02
     },
+	['precast_nukes'] = {
+        Ammo = 'Phtm. Tathlum',
+        Head = 'Walahra Turban',
+        Neck = 'Aife\'s Medal',
+        Ear1 = 'Loquac. Earring',--2% or 0.02
+        Ear2 = 'Magnetic Earring',
+        Body = 'Dalmatica',--3% or 0.03
+        Hands = 'Dune Bracers',
+        Ring1 = 'Tamas Ring',
+        Ring2 = 'Karka Ring',
+        Back = 'Veela Cape',--2% or 0.02
+        Waist = 'Ninurta\'s Sash',
+        Legs = 'Sorcerer\'s Tonban',
+        Feet = 'Rostrum Pumps',--2% or 0.02
+    },
+	['precast_nukes_tier3'] = {
+        Ammo = 'Phtm. Tathlum',
+        Head = 'Walahra Turban',
+        Neck = 'Aife\'s Medal',
+        Ear1 = 'Loquac. Earring',--2% or 0.02
+        Ear2 = 'Magnetic Earring',
+        Body = 'Dalmatica',--3% or 0.03
+        Hands = 'Dune Bracers',
+        Ring1 = 'Tamas Ring',
+        Ring2 = 'Karka Ring',
+        Back = 'Veela Cape',--2% or 0.02
+        Waist = 'Ninurta\'s Sash',
+        Legs = 'Sorcerer\'s Tonban',
+        Feet = 'Rostrum Pumps',--2% or 0.02
+    },
     ['nuke_lowacc'] = {
         Ammo = 'Phtm. Tathlum',
         Head = { Name = 'Shadow Hat', Augment = { [1] = 'Pet: "Mag. Atk. Bns."+3', [2] = 'Elem. magic skill +4', [3] = 'Pet: Mag. Acc.+4' } },
@@ -365,7 +395,18 @@ profile.HandlePrecast = function()
         FC = 0; -- No sub job effect on FC
     end
 
-    gFunc.EquipSet(sets.precast);
+
+	-- This is logic for swapping to specific precast sets based on spell type and tier (III specifically)
+    if (spell.Skill == 'Elemental Magic') then
+		if string.match(spell.Name, 'III') then
+			gFunc.EquipSet(sets.precast_nukes_tier3); -- Only tier 3 nukes proc this
+		else
+			gFunc.EquipSet(sets.precast_nukes); -- Elemental spells precast
+		end
+	else
+		gFunc.EquipSet(sets.precast); --generic precast set
+	end
+	-- End specific precast sets section
 
     --------------------------------
     --- set midcastdelay -----------
@@ -454,6 +495,7 @@ profile.HandleMidcast = function()
         elseif (spell.Element == 'Ice') then
         elseif (spell.Element == 'Thunder') then
         elseif (spell.Element == 'Dark') then
+			-- Sleep spell
         elseif (spell.Element == 'Light') then
         end
 

@@ -11,19 +11,33 @@ local sets = {
         Legs = 'Hydra Cuisses',
         Feet = 'Shrewd Pumps',
     },
-    ['idle'] = {
-        Head = 'Walahra Turban',
+    ['idle_Priority'] = {
+        Head = { 'Walahra Turban', 'Optical Hat', 'Voyager Sallet', 'Destrier Beret' },
         Neck = 'Orochi Nodowa',
-        Ear1 = 'Magnetic Earring',
-        Ear2 = 'Astral Earring',
-        Body = 'Futhark Coat',
-        Hands = 'Runeist Mitons',
-        Ring1 = 'Succor Ring',
+        Ear1 = { 'Magnetic Earring', 'Optical Earring' },
+        Ear2 = { 'Astral Earring', 'Cassie Earring' },
+        Body = { 'Futhark Coat', 'Scp. Harness +1', 'Brigandine +1', 'Eminence Doublet' },
+        Hands = { 'Runeist Mitons', 'Alkyoneus\'s Brc.', 'Combat Mittens +1', 'Garrison Gloves', 'Battle Gloves' },
+        Ring1 = { 'Succor Ring', 'Flame Ring', 'Rajas Ring', 'San d\'Orian Ring' },
         Ring2 = 'Warp Ring',
         Back = 'Lamia Mantle',
         Waist = 'Al Zahbi Sash',
-        Legs = 'Futhark Trousers',
-        Feet = 'Futhark Boots',
+        Legs = { 'Futhark Trousers', 'Enkidu\'s Subligar', 'Phl. Trousers', 'Solid Cuisses', 'Galkan Braguette' },
+        Feet = { 'Futhark Boots', 'Battle Boots', 'Leaping Boots', '' }
+    },
+	['tp_default_Priority'] = {
+        Head = { 'Walahra Turban', 'Optical Hat', 'Voyager Sallet', 'Destrier Beret' },
+        Neck = { 'Ghost Pendant', 'Chivalrous Chain', 'Peacock Amulet', 'Focus Collar' },
+        Ear1 = { 'Magnetic Earring', 'Ethereal Earring', 'Wilder. Earring +1', 'Cassie Earring' },
+        Ear2 = { 'Suppanomimi', 'Optical Earring' },
+        Body = { 'Futhark Coat', 'Scp. Harness +1', 'Brigandine +1', 'Eminence Doublet' },
+        Hands = { 'Runeist Mitons', 'Alkyoneus\'s Brc.', 'Combat Mittens +1', 'Battle Gloves' },
+        Ring1 = { 'Succor Ring', 'Flame Ring', 'Rajas Ring', 'San d\'Orian Ring' },
+        Ring2 = { 'Aqua Ring', 'Sniper\'s Ring +1', 'Jaeger Ring', 'Shikaree Ring', 'Sardonyx Ring' },
+        Back = { 'Futhark Cape', 'Ryl. Army Mantle', 'Accura Cape', 'Fidelity Mantle', 'Traveler\'s Mantle' },
+        Waist = { 'Warwolf Belt', 'Ninurta\'s Sash', 'Headlong Belt', 'Griot Belt', 'Leather Belt' },
+        Legs = { 'Futhark Trousers', 'Enkidu\'s Subligar', 'Phl. Trousers', 'Solid Cuisses', 'Galkan Braguette' },
+        Feet = { 'Futhark Boots', 'Battle Boots', 'Leaping Boots' }
     },
     ['haste'] = {
         Head = 'Walahra Turban',
@@ -35,8 +49,8 @@ local sets = {
         Legs = 'Futhark Trousers',
         Feet = 'Futhark Boots',
     },
-    ['precast'] = {
-        Head = 'Walahra Turban',
+    ['precast_Priority'] = {
+        Head = { 'Walahra Turban', 'Entrancing Ribbon' },
         Ear1 = 'Magnetic Earring',
         Ear2 = 'Loquac. Earring',
         Body = 'Hydra Mail',
@@ -245,20 +259,6 @@ local sets = {
         Ring2 = 'Corneus Ring',
         Waist = 'Warwolf Belt',
     },
-    ['tp_default'] = {
-        Head = 'Walahra Turban',
-        Neck = 'Parrying Torque',
-        Ear1 = 'Magnetic Earring',
-        Ear2 = 'Suppanomimi',
-        Body = 'Futhark Coat',
-        Hands = 'Runeist Mitons',
-        Ring1 = 'Succor Ring',
-        Ring2 = 'Flame Ring',
-        Back = 'Futhark Cape',
-        Waist = 'Warwolf Belt',
-        Legs = 'Futhark Trousers',
-        Feet = 'Futhark Boots',
-    },
     ['STR'] = {
     },
     ['MND'] = {
@@ -294,6 +294,7 @@ local settings = {
 	autorefresh = true;
 	kite = false,
 	afpercent = 20;
+	currentlevel = 0, -- Used for Levelsync gear determination
 };
 
 local tpmodetable = {
@@ -315,6 +316,89 @@ profile.Sets = sets;
 
 profile.Packer = {
 };
+
+local function CastRegen()
+	local pLevel = AshitaCore:GetMemoryManager():GetPlayer():GetMainJobLevel();
+	local pSyncLevel = gData.GetPlayer().MainJobSync;
+	local sName = '';
+	
+	if (pLevel ~= pSyncLevel) then
+		pLevel = pSyncLevel;
+	end	
+	
+	if (pLevel >= 70) then
+		sName = 'Regen III';
+	elseif (pLevel >= 48) and (pLevel <= 69) then
+		sName = 'Regen II';
+	elseif (pLevel >= 23) and (pLevel <= 47) then
+		sName = 'Regen';
+	else
+		AshitaCore:GetChatManager():QueueCommand(1, '/echo There was an ERROR. Unable to cast any Regen. Not the correct level.');
+	end
+	
+	AshitaCore:GetChatManager():QueueCommand(1, '/ma "' .. sName .. '" <me>');
+	
+end
+
+local function DoLunge(skillName) -- Not functional yet
+	local runeCount = 0; -- We zero the count out on every call.
+	local initialBuffs = {}; -- We create a table and leave it empty.
+	local leftoverBuffs = {}; -- Create another table for the second check.
+	local finalBuffs = {};
+	local bCount = 0;
+	--523-530
+	-- This will check for all the rune ID and see if there is a count for each
+	-- then it adds the count to the table whatBuffs.
+	for i = 523, 530 do
+		bCount = gData.GetBuffCount(i); --check the buff count for each ID
+		if (bCount ~= 0) then
+			initialBuffs[i] = bCount;
+			runeCount = runeCount + bCount;
+				if (runeCount == 3) then
+					break; -- if there are 3 buffs it can't go higher so just stop checking
+				end
+		end
+	end
+	
+	-- Do Lunge or Swipe
+	if (skillName == 'Lunge') then
+		AshitaCore:GetChatManager():QueueCommand(1, '/ja "Lunge" <stnpc>');
+	elseif (skillName == 'Swipe') then
+		AshitaCore:GetChatManager():QueueCommand(1, '/ja "Swipe" <stnpc>');
+	else
+		gFunc.Error('There was an error. Supplied wrong job ability, only Lunge or Swipe allowed.');
+	end
+	
+	-- Recheck the runes count to see if any remain
+	-- Compare again the old table to see the changes
+	-- Replace the ID with the change values
+	bCount = 0;
+	runeCount = 0;
+	for x = 523, 530 do
+		if (initialBuffs[1] ~= nil) then -- We check if there is a value if not just skip it
+		bCount = gData.GetBuffCount(x); --check the buff count for each ID
+			if (bCount ~= 0) then
+				leftoverBuffs[x] = bCount;
+				runeCount = runeCount + bCount;
+					if (runeCount == 3) then 
+						break; -- if there are 3 buffs it can't go higher so just stop checking
+					end
+			end
+		end	
+	end
+	
+	-- Now we have 2 tables with the before and after buff counts and we can compare them
+	for z = 523, 530 do
+		if (initialBuffs[z] ~= nil) then
+			firstBuffCount = initialBuffs[z];
+			if (leftoverBuffs[z] ~= nil) then
+				secondBuffCount = leftoverBuffs[z];
+			end
+		end
+			
+	end
+
+end
 
 profile.OnLoad = function()
     gSettings.AllowAddSet = true;
@@ -384,6 +468,15 @@ profile.HandleCommand = function(args)
 			settings.kite = true;
 		end
 		gFunc.Message('Kite Mode is now set to ' .. string.upper(tostring(settings.kite)));
+	elseif (args[1] == 'test') then
+		local wID = gData.GetBuffCount(529);
+		gFunc.Message(wID);
+	elseif (args[1] == 'cast') then
+		if (args[2] == 'regen') then
+			CastRegen();
+		elseif (args[2] == 'protect') then
+		
+		end
 	end
 	
 end
@@ -394,6 +487,16 @@ profile.HandleDefault = function()
 	local swordplay = gData.GetBuffCount('Swordplay');
 	local rune = gData.GetBuffCount();
 	local zone = gData.GetEnvironment().Area;
+	-- *****************************************************
+	-- ********Used for Levelsync gear determination********
+	local myLevel = AshitaCore:GetMemoryManager():GetPlayer():GetMainJobLevel();
+	
+    if (myLevel ~= settings.currentlevel) then
+        gFunc.EvaluateLevels(profile.Sets, myLevel);
+        settings.currentlevel = myLevel;
+	end
+	-- *************************End*************************
+	-- *****************************************************
 	
 	if (player.Status == 'Engaged') then
 

@@ -9,19 +9,19 @@ require('common');
 -- ws_slug_sidewinder - only one set for both slug shot and sidewinder due to specific acc build
 -- range_xxxx - these are normal range attack sets; lowacc, medacc, highacc
 local sets = {
-	['idle'] = {
-        Head = 'Scout\'s Beret',
-        Neck = 'Orochi Nodowa',
-        Ear1 = 'Altdorf\'s Earring',
-        Ear2 = 'Wilhelm\'s Earring',
-        Body = 'Kirin\'s Osode',
-        Hands = 'Blood Fng. Gnt.',
+	['idle_Priority'] = {
+        Head = { 'Scout\'s Beret', 'Destrier Beret' },
+        Neck = { 'Orochi Nodowa', 'Ranger\'s Necklace' },
+        Ear1 = { 'Altdorf\'s Earring', 'Optical Earring' },
+        Ear2 = { 'Wilhelm\'s Earring', 'Cassie Earring' },
+        Body = { 'Kirin\'s Osode', 'Brigandine +1', 'Eminence Doublet' },
+        Hands = { 'Blood Fng. Gnt.', '', 'Garrison Gloves', 'Ryl.Ftm. Gloves' },
         Ring1 = 'Blobnag Ring',
         Ring2 = 'Warp Ring',
         Back = 'Psilos Mantle',
         Waist = 'Scout\'s Belt',
-        Legs = 'Pln. Seraweels',
-        Feet = 'Hachiryu Sune-Ate',
+        Legs = { 'Pln. Seraweels',  'Enkidu\'s Subligar', 'Phl. Trousers', 'Solid Cuisses', 'Galkan Braguette' },
+        Feet = { 'Hachiryu Sune-Ate', 'Trotter Boots', 'Leaping Boots' }
     },
     ['idle_town'] = {
         Head = 'Scout\'s Beret',
@@ -37,22 +37,22 @@ local sets = {
         Legs = 'Denali Kecks',
         Feet = 'Hachiryu Sune-Ate',
     },
-	['tp_lowacc'] = {
-        Head = 'Shadow Mask',
-        Neck = 'Chivalrous Chain',
-        Ear1 = 'Hollow Earring',
-        Ear2 = 'Megasco Earring',
-        Body = 'Pln. Khazagand',
-        Hands = 'Blood Fng. Gnt.',
-        Ring1 = 'Rajas Ring',
-        Ring2 = 'Jaeger Ring',
-        Back = 'Psilos Mantle',
-        Waist = 'Ninurta\'s Sash',
-        Legs = 'Byakko\'s Haidate',
-        Feet = 'Hachiryu Sune-Ate',
+	['tp_lowacc_Priority'] = {
+        Head = { 'Optical Hat', 'Voyager Sallet', 'Destrier Beret' },
+        Neck = { 'Ghost Pendant', 'Chivalrous Chain', 'Peacock Amulet', 'Focus Collar' },
+        Ear1 = { 'Hollow Earring', 'Optical Earring' },
+        Ear2 = { 'Megasco Earring', 'Ethereal Earring', 'Wilder. Earring +1', 'Cassie Earring' },
+        Body = { 'Pln. Khazagand', 'Brigandine +1', 'Eminence Doublet' },
+        Hands = { 'Blood Fng. Gnt.', 'Garrison Gloves', 'Ryl.Ftm. Gloves' },
+        Ring1 = { 'Rajas Ring', 'San d\'Orian Ring' },
+        Ring2 = { 'Sniper\'s Ring +1', 'Jaeger Ring', 'Shikaree Ring', 'Sardonyx Ring' },
+        Back = { 'Psilos Mantle', 'Ryl. Army Mantle', 'Nomad\'s Mantle +1', 'Traveler\'s Mantle' },
+        Waist = { 'Ninurta\'s Sash', 'Headlong Belt', 'Griot Belt', 'Leather Belt' },
+        Legs = { 'Byakko\'s Haidate', 'Enkidu\'s Subligar', 'Bastokan Cuisses', 'Phl. Trousers', 'Solid Cuisses', 'Galkan Braguette' },
+        Feet = { 'Hachiryu Sune-Ate', 'Leaping Boots' }
     },
 	['tp_medacc'] = {
-        Head = 'Shadow Mask',
+        Head = 'Optical Hat',
         Neck = 'Peacock Amulet',
         Ear1 = 'Hollow Earring',
         Ear2 = 'Megasco Earring',
@@ -90,7 +90,7 @@ local sets = {
         Ring2 = 'Breeze Ring',
         Back = 'Psilos Mantle',
         Waist = 'Scout\'s Belt',
-        Legs = 'Denali Kecks',
+        Legs = 'Oily Trousers',
         Feet = 'Hachiryu Sune-Ate',
     },
     ['ws_apex_medacc'] = {
@@ -104,7 +104,7 @@ local sets = {
         Ring2 = 'Breeze Ring',
         Back = 'Psilos Mantle',
         Waist = 'Scout\'s Belt',
-        Legs = 'Denali Kecks',
+        Legs = 'Oily Trousers',
         Feet = 'Hachiryu Sune-Ate',
     },
 	['ws_apex_highacc'] = {
@@ -118,7 +118,7 @@ local sets = {
         Ring2 = 'Dragon Ring',
         Back = 'Psilos Mantle',
         Waist = 'Scout\'s Belt',
-        Legs = 'Scout\'s Braccae',
+        Legs = 'Oily Trousers',
         Feet = 'Hachiryu Sune-Ate',
     },
 	['ws_reful_lowacc'] = {
@@ -273,25 +273,21 @@ local sets = {
         Legs = 'Scout\'s Braccae',
         Feet = 'Hachiryu Sune-Ate',
     },
-	['range_lowacc'] = {
-        Range = '';
-        Ammo = 'Kabura Arrow',
-        Head = 'Shadow Mask',
+	['range_lowacc_Priority'] = {
+        Head = { 'Optical Hat', 'Emperor Hairpin' },
         Neck = 'Ranger\'s Necklace',
         Ear1 = 'Altdorf\'s Earring',
         Ear2 = 'Wilhelm\'s Earring',
         Body = { Name = 'Kirin\'s Osode', Augment = { [1] = 'Accuracy+5', [2] = 'Phys. dmg. taken -5%', [3] = '"Regen"+2' } },
         Hands = 'Blood Fng. Gnt.',
-        Ring1 = 'Rajas Ring',
-        Ring2 = { Name = 'Jaeger Ring', Augment = { [1] = 'AGI+3', [2] = '"Store TP"+1' } },
-        Back = 'Psilos Mantle',
-        Waist = 'Scout\'s Belt',
-        Legs = 'Byakko\'s Haidate',
-        Feet = 'Hachiryu Sune-Ate',
+        Ring1 = { 'Rajas Ring', 'San d\'Orian Ring' },
+        Ring2 = { 'Merman\'s Ring', 'Jalzahn\'s Ring', 'Jaeger Ring', 'Shikaree Ring' },
+        Back = { 'Psilos Mantle', 'Nomad\'s Mantle +1' },
+        Waist = { 'Scout\'s Belt', 'Precise Belt' },
+        Legs = { 'Byakko\'s Haidate', 'Bastokan Cuisses' },
+        Feet = { 'Hachiryu Sune-Ate', 'Leaping Boots' }
     },
 	['range_medacc'] = {
-        Range = '';
-        Ammo = 'Kabura Arrow',
         Head = { Name = 'Optical Hat', Augment = { [1] = 'Haste+3', [2] = 'HP+15', [3] = 'AGI+3', [4] = 'DEX+3' } },
         Neck = 'Crested Torque',
         Ear1 = 'Altdorf\'s Earring',
@@ -299,23 +295,21 @@ local sets = {
         Body = { Name = 'Kirin\'s Osode', Augment = { [1] = 'Accuracy+5', [2] = 'Phys. dmg. taken -5%', [3] = '"Regen"+2' } },
         Hands = 'Blood Fng. Gnt.',
         Ring1 = 'Rajas Ring',
-        Ring2 = { Name = 'Jaeger Ring', Augment = { [1] = 'AGI+3', [2] = '"Store TP"+1' } },
+        Ring2 = 'Jalzahn\'s Ring',
         Back = 'Psilos Mantle',
         Waist = 'Scout\'s Belt',
         Legs = 'Pln. Seraweels',
         Feet = 'Hachiryu Sune-Ate',
     },
     ['range_highacc'] = {
-        Range = '';
-        Ammo = 'Kabura Arrow',
         Head = { Name = 'Optical Hat', Augment = { [1] = 'Haste+3', [2] = 'HP+15', [3] = 'AGI+3', [4] = 'DEX+3' } },
         Neck = 'Crested Torque',
         Ear1 = 'Altdorf\'s Earring',
         Ear2 = 'Wilhelm\'s Earring',
         Body = 'Pln. Khazagand',
         Hands = 'Blood Fng. Gnt.',
-        Ring1 = 'Rajas Ring',
-        Ring2 = 'Dragon Ring',
+        Ring1 = 'Jalzahn\'s Ring',
+        Ring2 = 'Merman\'s Ring',
         Back = 'Lynx Mantle',
         Waist = 'Scout\'s Belt',
         Legs = 'Pln. Seraweels',
@@ -394,7 +388,10 @@ local sets = {
 		--Sub = '',
     },
 	['diset'] = {
-		Range = 'Ajjub',
+		Main = 'Atoyac',
+		Sub = 'Hatxiik',
+		Range = 'Atetepeyong',
+		Ammo = 'Holy Bolt',
 	},
     ['mab'] = {
         Head = 'Denali Bonnet',
@@ -424,6 +421,7 @@ local settings = {
 	rangevariant = 1, -- For range shots
 	diset = false; -- If you use any specific equipment in DI turn this on
     kite = false, -- toggle for using your kite set
+	currentlevel = 0, -- Used for Levelsync gear determination
     
     -- Auto whatever settings
 	autoberserk = false, -- Will auto use Berserk if it isn't up
@@ -431,6 +429,7 @@ local settings = {
 	auto_equip_debuff = true, -- This is for Poison, Paralyze, Silence, Petrification
 	auto_equip_low_health = true, -- set to false if you don't want it to auto equip
     low_health_percent = 20, -- This is the percent ay which the low health set gets equiped
+	AutoSwapAmmo = false, -- turn on to auto swap ammo to ones listed in ammo tables
     
     -- Range distance and warning settings
     MaxRangedWSDistance = 18, -- The distance in yalms furthest to allow for WS, over this its canceled
@@ -462,9 +461,9 @@ local rangevartable = {
 -- List them under the proper weapon type.
 local ranged_weapons_bows = T{'Ajjub Bow', 'Yoichinoyumi'};
 
-local ranged_weapons_guns = T{'Opprimo', 'Shark Gun'};
+local ranged_weapons_guns = T{'Opprimo', 'Shark Gun', 'Martial Gun'};
 
-local ranged_weapons_xbow = T{'Othinus\' Bow'};
+local ranged_weapons_xbow = T{'Othinus\' Bow', 'Atetepeyorg'};
 
 local ranged_weapons_throwing = T{};
 
@@ -488,6 +487,9 @@ local bolts = {
 	'Bloody Bolt',
 	'Bronze Bolt',
 };
+
+local throwing = {};
+
 -- Table of special ammo used for WS+US
 local SpecialAmmo = {
     ['Cmb.Cst. Arrow'] = 'Cmb.Cst. Arrow',
@@ -549,7 +551,7 @@ local function SelectAmmo(TheAmmoTable)
             return entry;
         end
     end
-	gFunc.Message('PANIC! Check awesome ammo to see if it\'s been lost');
+	gFunc.Message('PANIC! Check awesome ammo to see if it\'s been lost - [Func: SelectAmmo]');
     return 'remove';
 end
 
@@ -583,9 +585,16 @@ end
 
 local function SwapAmmo() -- Add this fucntion at the end of Pre and Mid shots and WS
 	
+	-- Looks at what ranged weapon you have equipped and will swap into one of the ammo you have
+	-- have listed in the ammo t ables (bullets, arrows, bolts, throwings)
+	
 	local what_weapon = gData.GetEquipment().Range;
 	local vAmmoTable = nil
 
+	if (settings.AutoSwapAmmo == false) then
+		return;
+	end
+	
 	if ranged_weapons_guns:contains(what_weapon.Name) then
 		vAmmoTable = bullets;
 	elseif ranged_weapons_bows:contains(what_weapon.Name) then
@@ -595,8 +604,10 @@ local function SwapAmmo() -- Add this fucntion at the end of Pre and Mid shots a
 	elseif ranged_weapons_throwing:contains(what_weapon.Name) then
 		--vAmmoTable = bolts;
     else
-		gFunc.Error('Check your rangged weapon slots to make sure you have them equiped. [SwapAmmo] - ' .. what_weapon.Name);
-        return;
+		if (settings.currentlevel >= 60) then 
+			gFunc.Error('Listed ranged weapon not found, no auto ammo swap will happen. [Func: SwapAmmo] - ' .. 'Current: ' .. what_weapon.Name);
+			return;
+		end
     end
 	
 	gFunc.Equip('Ammo', SelectAmmo(vAmmoTable));
@@ -655,7 +666,7 @@ profile.OnLoad = function()
 	
 	gFunc.Message('Type "/rng help" for commands');
 	-- If you want a set to lockon when this loads
-	gFunc.LockStyle(sets.idle);
+	AshitaCore:GetChatManager():QueueCommand(1, '/lockstyleset 011');
 	
 end
 
@@ -763,7 +774,7 @@ end
 
 profile.HandleDefault = function()
 
-	local player = gData.GetPlayer();
+	local player = gData.GetPlayer(); -- This gets the players info and holds it all in 'player'
 	local hasso = gData.GetBuffCount('Hasso');
 	local berserk = gData.GetBuffCount('Berserk');
 	local isSleep = gData.GetBuffCount('Sleep');
@@ -772,6 +783,17 @@ profile.HandleDefault = function()
 	local isPetrified = gData.GetBuffCount('Petrified');
     local zone = gData.GetEnvironment();
 	local berserkRecast = CheckAbilityRecast('Berserk');
+	
+	-- *****************************************************
+	-- ********Used for Levelsync gear determination********
+	local myLevel = AshitaCore:GetMemoryManager():GetPlayer():GetMainJobLevel();
+	
+    if (myLevel ~= settings.currentlevel) then
+        gFunc.EvaluateLevels(profile.Sets, myLevel);
+        settings.currentlevel = myLevel;
+	end
+	-- *************************End*************************
+	-- *****************************************************
 	
 	if (player.Status == 'Engaged') then
 		-- Hasso will only start when engaged
@@ -945,9 +967,16 @@ profile.HandleMidshot = function()
 		gFunc.EquipSet(sets.barrage);
 	end
 
-    if MagicDamageAmmo:contains(ammoName.Name) then
-        gFunc.EquipSet(sets.mab);
-    end
+	if (ammoName.Name ~= nil) then
+		if MagicDamageAmmo:contains(ammoName.Name) then
+			gFunc.EquipSet(sets.mab);
+		end
+		
+		-- Count the ammo and report is setting is set
+		
+	else
+		gFunc.Message('Ammo is at 0. [Func: MidShot]');
+	end
 	
 	SwapAmmo();
 	

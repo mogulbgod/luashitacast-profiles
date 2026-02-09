@@ -1,18 +1,18 @@
 local profile = {};
 local sets = {
-    ['idle'] = {
+    ['idle_Priority'] = {
         Ammo = 'Tiphia Sting',
-        Head = { Name = 'Genbu\'s Kabuto', Augment = { [1] = 'Phys. dmg. taken -1%', [2] = 'Haste+1' } },
+        Head = { 'Genbu\'s Kabuto', 'Destrier Beret' },
         Neck = 'Orochi Nodowa',
         Ear1 = 'Merman\'s Earring',
         Ear2 = 'Merman\'s Earring',
-        Body = { Name = 'Kirin\'s Osode', Augment = { [1] = 'Accuracy+5', [2] = 'Phys. dmg. taken -5%', [3] = '"Regen"+2' } },
+        Body = { 'Kirin\'s Osode', 'Scp. Harness +1', 'Eminence Doublet' },
         Hands = 'Melaco Mittens',
         Ring1 = 'Alert Ring',
         Ring2 = 'Succor Ring',
         Back = 'Shadow Mantle',
-        Waist = 'Black Belt',
-        Legs = { Name = 'Byakko\'s Haidate', Augment = { [1] = 'STR+2', [2] = '"Store TP"+5', [3] = 'AGI+3' } },
+        Waist = { 'Black Belt', 'Potent Belt', 'Headlong Belt', 'Purple Belt', 'White Belt' },
+        Legs = { {Name = 'Byakko\'s Haidate', Augment = { [1] = 'STR+2', [2] = '"Store TP"+5', [3] = 'AGI+3'} }, 'Strike Subligar', 'Jujitsu Sitabaki', 'Galkan Braguette' },
         Feet = 'Hermes\' Sandals',
     },
     ['idle_town'] = {
@@ -29,23 +29,23 @@ local sets = {
         Legs = 'Melee Hose',
         Feet = 'Melee Gaiters',
     },
-    ['tp_lowacc'] = {
+    ['tp_lowacc_Priority'] = {
         Ammo = 'Tiphia Sting',
-        Head = 'Dampening Tam',
-        Neck = 'Chivalrous Chain',
-        Ear1 = 'Brutal Earring',
-        Ear2 = 'Bushinomimi',
-        Body = 'Enkidu\'s Harness',
-        Hands = 'Enkidu\'s Mittens',
-        Ring1 = 'Rajas Ring',
-        Ring2 = 'Mars\'s Ring',
-        Back = 'Aesir Mantle',
-        Waist = 'Black Belt',
-        Legs = { Name = 'Byakko\'s Haidate', Augment = { [1] = 'STR+2', [2] = '"Store TP"+5', [3] = 'AGI+3' } },
-        Feet = { Name = 'Suzaku\'s Sune-Ate', Augment = { [1] = '"Fast Cast"+1', [2] = 'Haste+3' } },
+        Head = { 'Uk\'uxkaj Cap', 'Optical Hat', 'Voyager Sallet', 'Emperor Hairpin', 'Destrier Beret' },
+        Neck = { 'Rikugame Nodowa', 'Chivalrous Chain', 'Peacock Amulet', 'Focus Collar' },
+        Ear1 = { 'Brutal Earring', 'Wilder. Earring +1', 'Cassie Earring' },
+        Ear2 = { 'Flame Earring', 'Bushinomimi', 'Optical Earring' },
+        Body = { 'Enkidu\'s Harness', 'Scp. Harness +1', 'Jujitsu Gi', 'Eminence Doublet' },
+        Hands = { 'Enkidu\'s Mittens', 'Alkyoneus\'s Brc.', 'Horomusha Kote', 'Combat Mittens +1', 'Hoshikazu Tekko' },
+        Ring1 = { 'Strigoi Ring', 'Flame Ring', 'Rajas Ring', 'San d\'Orian Ring' },
+        Ring2 = { 'Portus Ring', 'Sniper\'s Ring +1', 'Jaeger Ring', 'Shikaree Ring', 'Sardonyx Ring' },
+        Back = { 'Aesir Mantle', 'Forager\'s Mantle', 'Ryl. Army Mantle', 'Accura Cape', 'Fidelity Mantle', 'Traveler\'s Mantle' },
+        Waist = { 'Black Belt', 'Brown Belt', 'Purple Belt', 'White Belt' },
+        Legs = { 'Byakko\'s Haidate', 'Enkidu\'s Subligar', 'Strike Subligar', 'Jujitsu Sitabaki', 'Hoshikazu Hakama', 'Galkan Braguette' },
+        Feet = { 'Suzaku\'s Sune-Ate', 'Battle Boots', 'Kung Fu Shoes', 'H.kazu Kyahan' },
     },
     ['tp_medacc'] = {
-        Head = 'Dampening Tam',
+        Head = 'Uk\'uxkaj Cap',
         Neck = 'Chivalrous Chain',
         Ear1 = 'Brutal Earring',
         Ear2 = 'Hollow Earring',
@@ -90,7 +90,6 @@ local sets = {
         Feet = 'Hermes\' Sandals',
     },
     ['chakra'] = {
-        Ammo = 'Tiphia Sting',
         Head = { Name = 'Genbu\'s Kabuto', Augment = { [1] = 'Phys. dmg. taken -1%', [2] = 'Haste+1' } },
         Neck = 'Fortitude Torque',
         Ear1 = 'Brutal Earring',
@@ -98,7 +97,7 @@ local sets = {
         Body = { Name = 'Kirin\'s Osode', Augment = { [1] = 'Accuracy+5', [2] = 'Phys. dmg. taken -5%', [3] = '"Regen"+2' } },
         Hands = 'Melee Gloves', -- Has Enhances Chakra effect 2
         Ring1 = 'Corneus Ring',
-        Ring2 = 'Breeze Ring',
+        Ring2 = 'Portus Ring',
         Back = 'Melee Cape',
         Waist = 'Warwolf Belt',
         Legs = 'Pln. Seraweels',
@@ -109,8 +108,8 @@ local sets = {
         Ammo = 'Jasper Tathlum',
         Head = 'Maat\'s Cap',
         Neck = 'Aife\'s Medal',
-        Ear1 = 'Brutal Earring',
-        Ear2 = 'Cassie Earring',
+        Ear1 = 'Aqua Earring',
+        Ear2 = 'Aqua Earring',
         Body = { Name = 'Kirin\'s Osode', Augment = { [1] = 'Accuracy+5', [2] = 'Phys. dmg. taken -5%', [3] = '"Regen"+2' } },
         Hands = 'Melaco Mittens',
         Ring1 = 'Karka Ring',
@@ -172,6 +171,7 @@ local sets = {
     ['counterstance'] = {
         Head = 'Shinku Hatsuburi',
         Neck = 'Backlash Torque',
+		Body = 'Arhat\'s Gi',
         Feet = 'Melee Gaiters',
     },
     ['dt'] = {
@@ -197,6 +197,7 @@ local settings = {
     diset= false,
 	autoberserk = false,
     idleset = nil,
+	currentlevel = 0, -- Used for Levelsync gear determination
 };
 
 -- Use these names when creating tp sets
@@ -283,6 +284,16 @@ profile.HandleDefault = function()
     local zone = gData.GetEnvironment();
     local player = gData.GetPlayer();
     local counterstance = gData.GetBuffCount(61);
+	-- *****************************************************
+	-- ********Used for Levelsync gear determination********
+	local myLevel = AshitaCore:GetMemoryManager():GetPlayer():GetMainJobLevel();
+	
+    if (myLevel ~= settings.currentlevel) then
+        gFunc.EvaluateLevels(profile.Sets, myLevel);
+        settings.currentlevel = myLevel;
+	end
+	-- *************************End*************************
+	-- *****************************************************
 
     if (player.Status == 'Engaged') then
         gFunc.EquipSet('tp_' .. tpvarianttable[settings.tpvariant]);
@@ -305,7 +316,11 @@ profile.HandleDefault = function()
     end
 
     if (player.IsMoving) then
-        gFunc.EquipSet(sets.movement);
+		if (myLevel < 70) and (myLevel >= 32) then
+			gFunc.Equip('Body', 'Kupo Suit');
+		else
+			gFunc.EquipSet(sets.movement);
+		end
     end
 
 end

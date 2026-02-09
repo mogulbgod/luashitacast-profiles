@@ -2,63 +2,76 @@ local profile = {};
 local sets = {
     ['songdebuff'] = {
         Head = 'Bard\'s Roundlet',
-        Neck = 'Morgana\'s Choker',
+        Neck = 'Incanter\'s Torque', 
         Ear1 = 'Singing Earring',
         Ear2 = 'Loquac. Earring',
         Body = 'Sha\'ir Manteel',
         Hands = 'Sha\'ir Gages',
         Ring1 = 'Light Ring',
-        Ring2 = 'Serket Ring',
+        Ring2 = 'Angel\'s Ring',
         Back = 'Jester\'s Cape +1',
         Waist = 'Corsette',
         Legs = { Name = 'Zenith Slacks', Augment = { [1] = 'Song spellcasting time -3%', [2] = '"Resist Poison"+5', [3] = 'HP recovered while healing +5' } },
         Feet = 'Dance Shoes +1',
     },
-    ['tp_lowacc'] = {
-        Head = { Name = 'Optical Hat', Augment = { [1] = 'Haste+3', [2] = 'HP+15', [3] = 'AGI+3', [4] = 'DEX+3' } },
-        Neck = 'Peacock Amulet',
-        Ear1 = 'Suppanomimi',
-        Ear2 = 'Ethereal Earring',
-        Body = 'Bard\'s Jstcorps',
-        Hands = 'Dusk Gloves',
-        Ring1 = 'Rajas Ring',
-        Ring2 = 'Sniper\'s Ring +1',
-        Back = 'Bard\'s Cape',
-        Waist = 'Potent Belt',
-        Legs = 'Sha\'ir Seraweels',
-        Feet = 'Dusk Ledelsens',
+    ['tp_lowacc_Priority'] = {
+        Head = { 'Optical Hat', 'Voyager Sallet', 'Destrier Beret' },
+        Neck = { 'Ghost Pendant', 'Chivalrous Chain', 'Peacock Amulet', 'Focus Collar' },
+        Ear1 = { 'Suppanomimi', 'Optical Earring' },
+        Ear2 = { 'Brutal Earring', 'Ethereal Earring', 'Wilder. Earring +1', 'Cassie Earring' },
+        Body = { 'Bard\'s Jstcorps', 'Scp. Harness +1', 'Brigandine +1', 'Eminence Doublet' },
+        Hands = { 'Dusk Gloves', 'Alkyoneus\'s Brc.', 'Combat Mittens +1', 'Garrison Gloves', 'Battle Gloves' },
+        Ring1 = { 'Strigoi Ring', 'Flame Ring', 'Rajas Ring', 'San d\'Orian Ring' },
+        Ring2 = { 'Aqua Ring', 'Sniper\'s Ring +1', 'Jaeger Ring', 'Shikaree Ring', 'Sardonyx Ring' },
+        Back = { 'Bard\'s Cape', 'Ryl. Army Mantle', 'Accura Cape', 'Fidelity Mantle', 'Traveler\'s Mantle' },
+        Waist = { 'Ninurta\'s Sash', 'Headlong Belt', 'Griot Belt', 'Leather Belt' },
+        Legs = { 'Sha\'ir Seraweels', 'Enkidu\'s Subligar', 'Linen Slops', 'Galkan Braguette' },
+        Feet = { 'Battle Boots', 'Leaping Boots' }
     },
-    ['precast'] = {
-        Ear2 = 'Loquac. Earring',
-        Body = 'Dalmatica',
-        Back = 'Veela Cape',
-        Waist = 'Salire Belt',
-        Legs = 'Bard\'s Cannions',
-        Feet = 'Rostrum Pumps',
+	['tp_lowacc_magesub_Priority'] = {
+        Head = { 'Optical Hat', 'Voyager Sallet', 'Destrier Beret' },
+        Neck = { 'Ghost Pendant', 'Chivalrous Chain', 'Peacock Amulet', 'Focus Collar' },
+        Ear1 = { 'Suppanomimi', 'Optical Earring' },
+        Ear2 = { 'Brutal Earring', 'Ethereal Earring', 'Wilder. Earring +1', 'Energy Earring +1' },
+        Body = { 'Bard\'s Jstcorps', 'Scp. Harness +1', 'Brigandine +1', 'Eminence Doublet' },
+        Hands = { 'Dusk Gloves', 'Alkyoneus\'s Brc.', 'Combat Mittens +1', 'Garrison Gloves', 'Battle Gloves' },
+        Ring1 = { 'Strigoi Ring', 'Flame Ring', 'Rajas Ring', 'San d\'Orian Ring' },
+        Ring2 = { 'Aqua Ring', 'Sniper\'s Ring +1', 'Jaeger Ring', 'Shikaree Ring', 'Astral Ring' },
+        Back = { 'Bard\'s Cape', 'Ryl. Army Mantle', 'Accura Cape', 'Fidelity Mantle', 'Traveler\'s Mantle' },
+        Waist = { 'Ninurta\'s Sash', 'Headlong Belt', 'Griot Belt', 'Leather Belt' },
+        Legs = { 'Sha\'ir Seraweels', 'Enkidu\'s Subligar', 'Linen Slops', 'Galkan Braguette' },
+        Feet = { 'Dusk Ledelsens', 'Battle Boots', 'Leaping Boots' }
     },
-    ['song_midcast'] = {
-        Main = 'Chatoyant Staff',
-        Sub = 'Omni Grip',
-        Range = 'Horn +1',
+    ['precast_Priority'] = {
+        Head = { 'Furia Tam', 'Entrancing Ribbon' },
+		Ear2 = { 'Loquac. Earring' },
+        Body = { 'Dalmatica' },
+		Hands = { 'Sha\'ir Gages' },
+        Back = { 'Veela Cape' },
+        Waist = { 'Salire Belt' },
+        Legs = { 'Bard\'s Cannions' },
+        Feet = { 'Rostrum Pumps' },
+    },
+    ['song_midcast_Priority'] = {
         Head = 'Bard\'s Roundlet',
-        Neck = 'Morgana\'s Choker',
+        Neck = { 'Incanter\'s Torque', 'Elementium Torque' }, 
         Ear1 = 'Singing Earring',
         Ear2 = 'Delta Earring',
         Body = 'Sha\'ir Manteel',
-        Hands = 'Bard\'s Cuffs',
+        Hands = 'Sha\'ir Gages',
         Ring1 = 'Light Ring',
-        Ring2 = 'Insect Ring',
+        Ring2 = 'Angel\'s Ring',
         Back = 'Jester\'s Cape +1',
         Waist = 'Corsette',
         Legs = { Name = 'Zenith Slacks', Augment = { [1] = 'Song spellcasting time -3%', [2] = '"Resist Poison"+5', [3] = 'HP recovered while healing +5' } },
         Feet = 'Dune Sandals',
     },
-    ['idle'] = {
+    ['idle_Priority'] = {
         Head = 'Sha\'ir Turban',
         Neck = 'Morgana\'s Choker',
         Ear1 = 'Singing Earring',
         Ear2 = 'Loquac. Earring',
-        Body = 'Sha\'ir Manteel',
+        Body = { 'Sha\'ir Manteel', 'Scp. Harness +1', 'Brigandine +1' },
         Hands = 'Melaco Mittens',
         Ring1 = 'Light Ring',
         Ring2 = 'Insect Ring',
@@ -68,14 +81,14 @@ local sets = {
         Feet = 'Dune Sandals',
     },
     ['string'] = {
+		Neck = 'String Torque',
         Feet = 'Bard\'s Slippers',
     },
     ['wind'] = {
+		Hands = 'Bard\'s Cuffs',
         Ring2 = 'Trumpet Ring',
     },
     ['idle_town'] = {
-        Main = 'Chatoyant Staff',
-        Sub = 'Light Grip',
         Range = 'Horn +1',
         Head = 'Walahra Turban',
         Neck = 'Morgana\'s Choker',
@@ -83,7 +96,7 @@ local sets = {
         Ear2 = 'Loquac. Earring',
         Body = 'Sha\'ir Manteel',
         Hands = 'Sha\'ir Gages',
-        Ring1 = 'Setae Ring',
+        Ring1 = 'Succor Ring',
         Ring2 = 'Serket Ring',
         Back = 'Cheviot Cape',
         Waist = 'Corsette',
@@ -93,7 +106,20 @@ local sets = {
     ['cure'] = {
         Ammo = 'Hedgehog Bomb',
         Head = 'Walahra Turban',
-        Neck = 'Morgana\'s Choker',
+        Neck = 'Fylgja Torque +1',
+        Ear1 = 'Roundel Earring',
+        Ear2 = 'Loquac. Earring',
+        Hands = 'Devotee\'s Mitts',
+        Ring1 = 'Tamas Ring',
+        Ring2 = 'Karka Ring',
+        Back = 'Errant Cape',
+        Waist = 'Salire Belt',
+        Legs = 'Druid\'s Slops',
+    },
+	['dex'] = {
+        Ammo = 'Hedgehog Bomb',
+        Head = 'Walahra Turban',
+        Neck = 'Fylgja Torque +1',
         Ear1 = 'Roundel Earring',
         Ear2 = 'Loquac. Earring',
         Hands = 'Devotee\'s Mitts',
@@ -106,7 +132,7 @@ local sets = {
 };
 
 local instruments = {
-    [0] = { -- Wind Instruments
+    [0] = { -- Wind Instruments, add name of instrument to use for specific song types
         ['March'] = 'Faerie Piccolo',
         ['Paeon'] = 'none',
         ['Ballad'] = 'none',
@@ -123,7 +149,7 @@ local instruments = {
         ['Mazurka'] = 'Cradle Horn',
         ['Other'] = 'none',
     },
-    [1] = { --String Instrunments
+    [1] = { --String Instrunments, add name of instrument to use for specific song typeskkki
         ['March'] = 'none',
         ['Paeon'] = 'none',
         ['Ballad'] = 'none',
@@ -144,9 +170,12 @@ local instruments = {
 
 local settings = {
     instrVar = 0, -- 0 = Wind Instruments and 1 = string instruments
+	currentlevel = 0, -- Used for Levelsync gear determination
+	forceMeleeSet = false, -- If you want a specific set to be used even when you have a mage sub
+	swapInstr = true, -- If you don't have Gjallarhorn set to true
 };
 
-local elements = T{
+local elements = T{ -- Change any grips to be used for a specific element
     ['Earth'] = T{'Omni Grip'},
     ['Water'] = T{'Omni Grip'},
     ['Wind'] = T{'Omni Grip'},
@@ -189,33 +218,87 @@ profile.OnLoad = function()
 
     AshitaCore:GetChatManager():QueueCommand(1, '/macro book 23');
 	AshitaCore:GetChatManager():QueueCommand(1, '/macro set 1');
+	
+	AshitaCore:GetChatManager():QueueCommand(-1, '/alias /brd /lac fwd');
+	AshitaCore:GetChatManager():QueueCommand(-1, '/bind !F1 /lac fwd forcemelee'); -- ALT+F1 forces use of a specific set for Melee
+	AshitaCore:GetChatManager():QueueCommand(-1, '/bind !F2 /lac fwd instr'); -- ALT+F2 changes instrument type
 
     LoadInstruments();
+	
+	AshitaCore:GetChatManager():QueueCommand(1, '/lockstyleset 045'); -- Sets and equipset as a lockstyle
 
 end
 
 profile.OnUnload = function()
+
+	AshitaCore:GetChatManager():QueueCommand(-1, '/alias delete /brd');
+	AshitaCore:GetChatManager():QueueCommand(-1, '/unbind !F1');
+    AshitaCore:GetChatManager():QueueCommand(-1, '/unbind !F2');
 end
 
 profile.HandleCommand = function(args)
+	if (args[1] == 'forcemelee') then
+		if (settings.forceMeleeSet == false) then
+			settings.forceMeleeSet = true;
+			gFunc.Message('Force Melee Set is ACTIVE');
+		else
+			settings.forceMeleeSet = false;
+			gFunc.Message('Force Melee Set is INACTIVE');
+		end
+		
+	elseif (args[1] == 'instr') then
+		if (settings.forceMeleeSet == 0) then
+			settings.forceMeleeSet = 1;
+			gFunc.Message('STRING Instruments ACTIVE');
+		else
+			settings.forceMeleeSet = 0;
+			gFunc.Message('WIND Instruments ACTIVE');
+		end
+	end
 end
 
 profile.HandleDefault = function()
     local player = gData.GetPlayer();
     local zone = gData.GetEnvironment();
+	-- *****************************************************
+	-- ********Used for Levelsync gear determination********
+	local myLevel = AshitaCore:GetMemoryManager():GetPlayer():GetMainJobLevel();
+	
+    if (myLevel ~= settings.currentlevel) then
+        gFunc.EvaluateLevels(profile.Sets, myLevel);
+        settings.currentlevel = myLevel;
+	end
+	-- *************************End*************************
+	-- *****************************************************
 
     if (player.Status == 'Engaged') then
-        gFunc.EquipSet(sets.tp_lowacc);
+		if (player.SubJob == 'WHM') then
+			gFunc.EquipSet(sets.tp_lowacc_magesub);
+		else
+			gFunc.EquipSet(sets.tp_lowacc);
+		end
     elseif (player.Status == 'Idle') then
         if (towns:contains(zone.Area)) then
             gFunc.EquipSet(sets.idle_town);
         else
             gFunc.EquipSet(sets.idle);
             if player.SubJob == 'WHM' or player.SubJob == 'RDM' then
-                gFunc.Equip('Body', 'Dalmatica');
+                if (myLevel >= 73) then
+					gFunc.Equip('Body', 'Dalmatica');
+				elseif (myLevel >= 59) and (myLevel <= 72) then
+					gFunc.Equip('Head', '');
+					gFunc.Equip('Body', 'Vermillion Cloak');
+				end
             end
         end
     end
+	
+	if (player.IsMoving) then
+		if (myLevel >= 31) then
+			gFunc.Equip('Body', 'Kupo Suit');
+		end
+    end
+	
 end
 
 profile.HandleAbility = function()
@@ -226,29 +309,52 @@ end
 
 profile.HandlePrecast = function()
     local song = gData.GetAction();
+	local instr = gData.GetEquipment().Range;
 
     gFunc.EquipSet(sets.precast);
+	
+	if (settings.instrVar == 0) then
+		--Wind skill set)
+	elseif (settings.instrVar == 1) then
+		--String skill set
+	end
 
     if (song.Type == 'Bard Song') then
-        gFunc.Equip('Range', instruments[settings.instrVar].Other);-- Default instrument
-
-        if (song.Name:contains('March')) then
-            gFunc.Equip('Range', instruments[settings.instrVar].March);
-        elseif (song.Name:contains('Minuet')) then
-            gFunc.Equip('Range', instruments[settings.instrVar].Minuet);
-        elseif (song.Name:contains('Minne')) then
-            gFunc.Equip('Range', instruments[settings.instrVar].Minne);
-        elseif (song.Name:contains('Elegy')) then
-            gFunc.Equip('Range', instruments[settings.instrVar].Elegy);
-        elseif (song.Name:contains('Lullaby')) then
-            gFunc.Equip('Range', instruments[settings.instrVar].Lullaby);
-        elseif (song.Name:contains('Madrigal')) then
-            gFunc.Equip('Range', instruments[settings.instrVar].Madrigal);
-        elseif (song.Name:contains('Requiem')) then
-            gFunc.Equip('Range', instruments[settings.instrVar].Requiem);
-        elseif (song.Name:contains('Paeon')) then
-            gFunc.Equip('Range', instruments[settings.instrVar].Paeon);
-        end
+	
+		-- Equip the correct instrument for the type of song if you don't have a Gjallarhorn
+        if (settings.forceMeleeSet == false) then
+			gFunc.Equip('Range', instruments[settings.instrVar].Other);-- Default instrument
+			if (song.Name:contains('March')) then
+				gFunc.Equip('Range', instruments[settings.instrVar].March);
+			elseif (song.Name:contains('Minuet')) then
+				gFunc.Equip('Range', instruments[settings.instrVar].Minuet);
+			elseif (song.Name:contains('Minne')) then
+				gFunc.Equip('Range', instruments[settings.instrVar].Minne);
+			elseif (song.Name:contains('Elegy')) then
+				gFunc.Equip('Range', instruments[settings.instrVar].Elegy);
+			elseif (song.Name:contains('Lullaby')) then
+				gFunc.Equip('Range', instruments[settings.instrVar].Lullaby);
+			elseif (song.Name:contains('Madrigal')) then
+				gFunc.Equip('Range', instruments[settings.instrVar].Madrigal);
+			elseif (song.Name:contains('Requiem')) then
+				gFunc.Equip('Range', instruments[settings.instrVar].Requiem);
+			elseif (song.Name:contains('Paeon')) then
+				gFunc.Equip('Range', instruments[settings.instrVar].Paeon);
+			end
+		end
+		-- End instrument change
+		
+		-- Put gear on for Wind or String instr
+		if not instr == nil then
+			if (WindInstr:contains(instr.Name)) then
+				gFunc.EquipSet(sets.wind);
+			end
+			if (StringInstr:contains(instr.Name)) then
+				gFunc.EquipSet(sets.string);
+			end
+		end
+		-- Wind or String specific gear logic
+		
     end
 
 end
@@ -258,18 +364,20 @@ profile.HandleMidcast = function()
     local instr = gData.GetEquipment().Range;
     local weapon = gData.GetEquipment().Main;
 
-    if (weapon.Name:contains('Staff')) then
+    if (weapon ~= nil) and (weapon.Name:contains('Staff')) then
         gFunc.Equip('Sub', elements[spell.Element][1]);
     end
 
     if (spell.Type == 'Bard Song') then
         gFunc.EquipSet(sets.song_midcast);
-        if (WindInstr:contains(instr.Name)) then
-            gFunc.EquipSet(sets.wind);
-        end
-        if (StringInstr:contains(instr.Name)) then
-            gFunc.EquipSet(sets.string);
-        end
+		if not instr == nil then
+			if (WindInstr:contains(instr.Name)) then
+				gFunc.EquipSet(sets.wind);
+			end
+			if (StringInstr:contains(instr.Name)) then
+				gFunc.EquipSet(sets.string);
+			end
+		end
     else
         --gFunc.EquipSet(sets.midcast);
     end
@@ -282,6 +390,25 @@ profile.HandleMidshot = function()
 end
 
 profile.HandleWeaponskill = function()
+	local ws = gData.GetAction();
+	
+	if (ws.Name == 'Wasp Sting') then -- 100% DEX
+		--gFunc.EquipSet(sets.SetName);
+	elseif (ws.Name == 'Evisceration') then -- 50% DEX
+		--gFunc.EquipSet(sets.SetName);
+	elseif (ws.Name == 'Exenterator') then -- 85% AGI on CatsEye
+		--gFunc.EquipSet(sets.SetName);
+	elseif (ws.Name == 'Viper Bite') then -- 100% DEX, Doubles Attack
+		--gFunc.EquipSet(sets.SetName);
+	elseif (ws.Name == '') then
+		--gFunc.EquipSet(sets.SetName);
+	elseif (ws.Name == '') then
+		--gFunc.EquipSet(sets.SetName);
+	else -- Generic WS set
+		--gFunc.EquipSet(sets.SetName);
+	
+	end
+	
 end
 
 return profile;

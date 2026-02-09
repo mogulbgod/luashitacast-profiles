@@ -82,7 +82,8 @@ local sets = {
         Feet = 'Duelist\'s Boots',
     },
     ['precast'] = {
-        Head = { Name = 'Shadow Hat', Augment = { [1] = 'Pet: "Mag. Atk. Bns."+3', [2] = 'Elem. magic skill +4', [3] = 'Pet: Mag. Acc.+4' } },
+        --Head = { Name = 'Shadow Hat', Augment = { [1] = 'Pet: "Mag. Atk. Bns."+3', [2] = 'Elem. magic skill +4', [3] = 'Pet: Mag. Acc.+4' } },
+		Head = 'Furia Tam',
         Neck = 'Aesir Torque',
         Ear1 = 'Roundel Earring',
         Ear2 = 'Loquac. Earring',
@@ -90,7 +91,7 @@ local sets = {
         Hands = 'Dusk Gloves',
         Ring1 = 'Tamas Ring',
         Ring2 = 'Karka Ring',
-        Back = 'Grapevine Cape',
+        Back = 'Swith Cape +1',
         Waist = 'Salire Belt',
         Legs = 'Blood Cuisses',
         Feet = 'Shrewd Pumps',

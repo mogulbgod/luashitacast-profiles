@@ -7,28 +7,28 @@ local sets = {
     ['idle'] = {
         Ammo = 'Hedgehog Bomb',
         Head = 'Summoner\'s Horn',
-        Neck = 'Beak Necklace',
+        Neck = 'Morgana\'s Choker',
         Ear1 = 'Astral Earring',
         Ear2 = 'Loquac. Earring',
         Body = 'Dalmatica',
         Hands = 'Desert Bracers',
-        Ring1 = 'Tamas Ring',
-        Ring2 = 'Evoker\'s Ring',
+        Ring1 = 'Evoker\'s Ring',
+        Ring2 = 'Eidolon Ring',
         Back = 'Summoner\'s Cape',
         Waist = 'Desert Rope',
         Legs = 'Summoner\'s Spats',
         Feet = 'Dune Sandals',
     },
-    ['idle_pet'] = {
+    ['idle_with_pet'] = {
         Ammo = 'Hedgehog Bomb',
         Head = 'Summoner\'s Horn',
-        Neck = 'Beak Necklace',
+        Neck = 'Morgana\'s Choker',
         Ear1 = 'Astral Earring',
         Ear2 = 'Loquac. Earring',
         Body = 'Dalmatica',
         Hands = 'Summoner\'s Brcr.',
-        Ring1 = 'Tamas Ring',
-        Ring2 = 'Evoker\'s Ring',
+        Ring1 = 'Evoker\'s Ring',
+        Ring2 = 'Serket Ring',
         Back = 'Summoner\'s Cape',
         Waist = 'Desert Rope',
         Legs = 'Summoner\'s Spats',
@@ -36,13 +36,13 @@ local sets = {
     },
 	['idle_town'] = {
         Head = 'Summoner\'s Horn',
-        Neck = 'Beak Necklace',
+        Neck = 'Morgana\'s Choker',
         Ear1 = 'Magnetic Earring',
         Ear2 = 'Loquac. Earring',
         Body = 'Summoner\'s Dblt.',
         Hands = 'Summoner\'s Brcr.',
         Ring1 = 'Tamas Ring',
-        Ring2 = 'Diverter\'s Ring',
+        Ring2 = 'Eidolon Ring',
         Back = 'Summoner\'s Cape',
         Waist = 'Desert Rope',
         Legs = 'Summoner\'s Spats',
@@ -50,13 +50,13 @@ local sets = {
     },
     ['default'] = {
         Head = 'Summoner\'s Horn',
-        Neck = 'Beak Necklace',
+        Neck = 'Morgana\'s Choker',
         Ear1 = 'Magnetic Earring',
         Ear2 = 'Loquac. Earring',
         Body = 'Dalmatica',
         Hands = 'Summoner\'s Brcr.',
         Ring1 = 'Tamas Ring',
-        Ring2 = 'Diverter\'s Ring',
+        Ring2 = 'Eidolon Ring',
         Back = 'Summoner\'s Cape',
         Waist = 'Desert Rope',
         Legs = 'Summoner\'s Spats',
@@ -64,13 +64,13 @@ local sets = {
     },
     ['dt'] = {
         Head = 'Summoner\'s Horn',
-        Neck = 'Beak Necklace',
+        Neck = 'Morgana\'s Choker',
         Ear1 = 'Magnetic Earring',
         Ear2 = 'Loquac. Earring',
         Body = 'Dalmatica',
         Hands = 'Summoner\'s Brcr.',
         Ring1 = 'Tamas Ring',
-        Ring2 = 'Diverter\'s Ring',
+        Ring2 = 'Eidolon Ring',
         Back = 'Summoner\'s Cape',
         Waist = 'Desert Rope',
         Legs = 'Summoner\'s Spats',
@@ -78,13 +78,13 @@ local sets = {
     },
     ['refresh'] = {
         Head = 'Summoner\'s Horn',
-        Neck = 'Beak Necklace',
+        Neck = 'Morgana\'s Choker',
         Ear1 = 'Magnetic Earring',
         Ear2 = 'Loquac. Earring',
         Body = 'Dalmatica',
         Hands = 'Summoner\'s Brcr.',
         Ring1 = 'Tamas Ring',
-        Ring2 = 'Diverter\'s Ring',
+        Ring2 = 'Eidolon Ring',
         Back = 'Summoner\'s Cape',
         Waist = 'Desert Rope',
         Legs = 'Summoner\'s Spats',
@@ -92,13 +92,13 @@ local sets = {
     },
     ['precast'] = {
         Head = 'Walahra Turban',
-        Neck = 'Beak Necklace',
+        Neck = 'Morgana\'s Choker',
         Ear1 = 'Magnetic Earring',
         Ear2 = 'Loquac. Earring',
         Body = 'Dalmatica',
         Hands = 'Summoner\'s Brcr.',
-        Ring1 = 'Tamas Ring',
-        Ring2 = 'Evoker\'s Ring',
+        Ring1 = 'Evoker\'s Ring',
+        Ring2 = 'Eidolon Ring',
         Back = 'Veela Cape',
         Waist = 'Al Zahbi Sash',
         Legs = 'Summoner\'s Spats',
@@ -106,13 +106,13 @@ local sets = {
     },
     ['midcast'] = {
         Head = 'Walahra Turban',
-        Neck = 'Beak Necklace',
+        Neck = 'Morgana\'s Choker',
         Ear1 = 'Magnetic Earring',
         Ear2 = 'Loquac. Earring',
         Body = 'Dalmatica',
         Hands = 'Summoner\'s Brcr.',
-        Ring1 = 'Tamas Ring',
-        Ring2 = 'Evoker\'s Ring',
+        Ring1 = 'Evoker\'s Ring',
+        Ring2 = 'Eidolon Ring',
         Back = 'Veela Cape',
         Waist = 'Al Zahbi Sash',
         Legs = 'Summoner\'s Spats',
@@ -121,13 +121,13 @@ local sets = {
     ['bp_minus_delay'] = {
         Ammo = 'Hedgehog Bomb',
         Head = 'Summoner\'s Horn',
-        Neck = 'Beak Necklace',
+        Neck = 'Morgana\'s Choker',
         Ear1 = 'Magnetic Earring',
         Ear2 = 'Loquac. Earring',
         Body = 'Summoner\'s Dblt.',
         Hands = 'Summoner\'s Brcr.',
         Ring1 = 'Tamas Ring',
-        Ring2 = 'Diverter\'s Ring',
+        Ring2 = 'Eidolon Ring',
         Back = 'Summoner\'s Cape',
         Waist = 'Desert Rope',
         Legs = 'Summoner\'s Spats',
@@ -148,58 +148,98 @@ local sets = {
         Legs = 'Summoner\'s Spats',
         Feet = 'Dune Sandals',
     },
-    ['pet_engaged'] = {
+    ['only_pet_engaged'] = {
+        Main = 'Chatoyant Staff',
+        Sub = 'Omni Grip',
         Ammo = 'Hedgehog Bomb',
         Head = 'Spurrer Beret',
-        Neck = 'Beak Necklace',
-        Ear1 = 'Magnetic Earring',
-        Ear2 = 'Loquac. Earring',
+        Neck = 'Morgana\'s Choker',
+        Ear1 = 'Ethereal Earring',
+        Ear2 = 'Wilder. Earring +1',
         Body = 'Summoner\'s Dblt.',
         Hands = 'Summoner\'s Brcr.',
-        Ring1 = 'Tamas Ring',
-        Ring2 = 'Diverter\'s Ring',
+        Ring1 = 'Evoker\'s Ring',
+        Ring2 = 'Eidolon Ring',
         Back = 'Summoner\'s Cape',
-        Waist = 'Selemnus Belt',
+        Waist = 'Beastly Girdle',
         Legs = 'Summoner\'s Spats',
-        Feet = 'Dune Sandals',
+        Feet = 'Koschei Crackows',
+    },
+	['master_pet_engaged'] = {
+        Main = 'Chatoyant Staff',
+        Sub = 'Omni Grip',
+        Ammo = 'Hedgehog Bomb',
+        Head = 'Spurrer Beret',
+        Neck = 'Morgana\'s Choker',
+        Ear1 = 'Ethereal Earring',
+        Ear2 = 'Wilder. Earring +1',
+        Body = 'Summoner\'s Dblt.',
+        Hands = 'Summoner\'s Brcr.',
+        Ring1 = 'Evoker\'s Ring',
+        Ring2 = 'Eidolon Ring',
+        Back = 'Summoner\'s Cape',
+        Waist = 'Beastly Girdle',
+        Legs = 'Summoner\'s Spats',
+        Feet = 'Koschei Crackows',
     },
     ['stylelock'] = {
         Head = 'Summoner\'s Horn',
-        Neck = 'Beak Necklace',
+        Neck = 'Morgana\'s Choker',
         Ear1 = 'Magnetic Earring',
         Ear2 = 'Loquac. Earring',
         Body = 'Summoner\'s Dblt.',
         Hands = 'Summoner\'s Brcr.',
         Ring1 = 'Tamas Ring',
-        Ring2 = 'Diverter\'s Ring',
+        Ring2 = 'Eidolon Ring',
         Back = 'Summoner\'s Cape',
         Waist = 'Desert Rope',
         Legs = 'Summoner\'s Spats',
         Feet = 'Dune Sandals',
     },
     ['cure'] = {
-        Head = 'Summoner\'s Horn',
-        Neck = 'Beak Necklace',
-        Ear1 = 'Magnetic Earring',
-        Ear2 = 'Loquac. Earring',
-        Body = 'Summoner\'s Dblt.',
-        Hands = 'Summoner\'s Brcr.',
+        Neck = 'Fylgja Torque +1',
+        Ear2 = 'Roundel Earring',
         Ring1 = 'Tamas Ring',
-        Ring2 = 'Diverter\'s Ring',
-        Back = 'Summoner\'s Cape',
-        Waist = 'Desert Rope',
-        Legs = 'Summoner\'s Spats',
-        Feet = 'Dune Sandals',
+        Ring2 = 'Karka Ring',
+        Back = 'Dew Silk Cape +1',
+        Waist = 'Salire Belt',
+        Legs = 'Druid\'s Slops',
+        Feet = 'Medium\'s Sabots',
     },
     ['enhancing'] = {
     },
-    [''] = {
+    ['spirit_taker'] = {
+        Main = 'Chatoyant Staff',
+        Sub = 'Omni Grip',
+        Ammo = 'Jasper Tathlum',
+        Head = 'Maat\'s Cap',
+        Neck = 'Aife\'s Medal',
+        Ear1 = 'Aesir Ear Pendant',
+        Ear2 = 'Loquac. Earring',
+        Body = { Name = 'Dalmatica', Augment = { [1] = '"Fast Cast"+3', [2] = 'Occ. quickens spellcasting +3%', [3] = '"Mag. Atk. Bns."+3' } },
+        Hands = 'Dune Bracers',
+        Ring1 = 'Aife\'s Annulet',
+        Ring2 = 'Eidolon Ring',
+        Back = 'Grapevine Cape',
+        Waist = 'Desert Rope',
+        Legs = { Name = 'Zenith Slacks', Augment = { [1] = 'Song spellcasting time -3%', [2] = '"Resist Poison"+5', [3] = 'HP recovered while healing +5' } },
+        Feet = 'Rostrum Pumps',
+    },
+	['shattersoul'] = {
     },
     ['onload'] = {
         Main = '',
         Sub = '',
         Range = '',
         Ammo = '',
+    },
+    ['summonskill'] = {
+        Neck = 'Smn. Torque',
+        Hands = 'Summoner\'s Brcr.',
+        Ring1 = 'Evoker\'s Ring',
+        Ring2 = 'Eidolon Ring',
+        Legs = 'Oracle\'s Braconi',
+        Feet = { Name = 'Zenith Pumps', Augment = { [1] = 'Summoning magic skill +3', [2] = 'Healing magic skill +5', [3] = 'Pet: "Mag. Atk. Bns."+4' } },
     },
 };
 
@@ -214,7 +254,7 @@ local settings = {
 	diset = false,
 	macro_set = 1,
     pause_macro_switching = false,
-    pref_avatar = nil,
+    pref_avatar = 'none',
 };
 
 local SpiritsByElement = T{
@@ -273,38 +313,79 @@ local function AutoElementalSiphon()
 	local dElement = gData.GetEnvironment().DayElement;
 	local player = gData.GetPlayer();
     local pet = gData.GetPet();
+	local hadPet = false;
+	local noPetTimings = {1, 5, 8, 11};
+	local petTimings = {3, 8, 11, 14};
 
-    local function summonspirit() -- Allows for a short wait to be used
-        AshitaCore:GetChatManager():QueueCommand(1, '/ma ' .. SpiritsByElement[dElement] .. ' <t>');
+    -- Using local functions allows for waits to be used
+	local function summonspirit(ele)
+		-- We pass either dElement for day or wElement for weather elements.
+        AshitaCore:GetChatManager():QueueCommand(1, '/ma "' .. SpiritsByElement[ele] .. '" <me>');
     end
 
     local function siphon()
-        AshitaCore:GetChatManager():QueueCommand(1, '/ja "Elemental Siphon <me>');
+        AshitaCore:GetChatManager():QueueCommand(1, '/ja "Elemental Siphon" <me>');
     end
 
 
     local function releasepet()
         AshitaCore:GetChatManager():QueueCommand(1, '/pet "Release" <me>');
     end
+	
+	local function resummonavatar()
+		AshitaCore:GetChatManager():QueueCommand(1, '/ma "' .. settings.pref_avatar .. '" <me>');
+	end
+	-- End local functions
 
 
 	--gFunc.Message(wElement .. ' | ' .. dElement);
 	if (player.MainJob == 'SMN') and (player.MainJobLevel >= 50) then
 		if (wElement == 'None') or (wElement == 'Unknown') then
+			gFunc.Message('day element is unknown or none.'); -- for testing remove when done
+			
 			-- if no weather element is up we look at the DayElement
-			if (dElement ~= 'Unknown') then
-                if (pet ~= nil) then
-                    settings.pref_avatar = pet.Name;
-                    -- Dismiss your current pet
-                    releasepet():once(2);
-                end
-                summonspirit():once(4);
+			if (dElement ~= 'Unknown') then -- If there is a day element present and not Unknown
+                
+				if (pet ~= nil) then -- If you have an avatar active
+					
+					-- Write what avatar or spirit you had our previously
+					settings.pref_avatar = pet.Name;
+					
+					-- Set the hadPet flag to true
+					hadPet = true;
+					
+					-- Dismiss your current pet
+					releasepet();
+				end
+				
+				-- Increase the numbers in brackets by the same amount if one of these stalls due to lag or latency
+				-- if adding 1 to siphon then add 1 to all after siphon
+				summonspirit:bind(dElement):once(3);
+				siphon:bind():once(8);
+				releasepet:bind():once(11);
+				
+				-- If the hadPet flag is true then we'll need to resummon the last summons
+				if hadPet == true then
+					resummonavatar:bind():once(14);
+				end
+				
 			else
-				gFunc.Message('lachelperlib - There was an error casting Spirit spell');
+				-- If the day element is "unknown" then something is wrong
+				gFunc.Message('There was an error casting Spirit spell; No day element found.');
 			end
 		else
-			--lachelperlib.SendToChat('/ma ' .. WeatherSpellType[wElement] .. ' <t>');
-            AshitaCore:GetChatManager():QueueCommand(1, '/ma ' .. SpiritsByElement[wElement] .. ' <t>');
+			-- If there is a weather element present
+			if (pet ~= nil) then -- If you have an avatar active
+				settings.pref_avatar = pet.Name;
+				hadPet = true;
+				releasepet();
+            end
+			summonspirit:bind(wElement):once(3);
+			siphon:bind():once(8);
+			releasepet:bind():once(11);
+			if hadPet == true then
+				resummonavatar:bind():once(14);
+			end
 		end
 	else
 		return
@@ -318,7 +399,7 @@ local function HandlePetAction(PetAction)
         if BloodPactMagic:contains(PetAction.Name) then -- This checks if the BP is a magical one
 		    --gFunc.EquipSet(sets.pet_bp_magical);
 	    elseif BloodPactPhysical:contains(PetAction.Name) then -- This checks if the BP is a physical one
-		    --gFunc.EquipSet(sets.pet_bp_physical);
+		    gFunc.Equip('Waist', 'Mujin Obi');
         elseif BloodPactHybrid:contains(PetAction.Name) then
             --gFunc.EquipSet(sets.bp_hybrid); -- A mix of magic and physical
         end
@@ -336,6 +417,7 @@ profile.OnLoad = function()
 
     AshitaCore:GetChatManager():QueueCommand(-1, '/bind !F1 /lac fwd idleset'); -- ALT + F1
 	AshitaCore:GetChatManager():QueueCommand(-1, '/bind !F2 /lac fwd diset'); -- ALT + F2
+	AshitaCore:GetChatManager():QueueCommand(-1, '/bind !F3 /lac fwd siphon'); -- ALT + F3
 
     gFunc.Equip('Main','Chatoyant Staff');
     gFunc.Equip('Sub','Staff Strap');
@@ -351,13 +433,14 @@ profile.OnUnload = function()
 	AshitaCore:GetChatManager():QueueCommand(-1, '/alias delete /smn');
     AshitaCore:GetChatManager():QueueCommand(-1, '/unbind !F1');
 	AshitaCore:GetChatManager():QueueCommand(-1, '/unbind !F2');
+	AshitaCore:GetChatManager():QueueCommand(-1, '/unbind !F3');
 
     --lachelperlib.Unload()
 end
 
 profile.HandleCommand = function(args)
 
-    if (args[1] == nil or '') then return; end
+    --if (args[1] == nil or '') then return; end
 
     if (args[1] == 'pause') then
         if (settings.pause_macro_switching == false) then
@@ -401,8 +484,11 @@ profile.HandleCommand = function(args)
 
         end
     elseif (args[1] == 'siphon') then
+		AutoElementalSiphon()
+		gFunc.Message('/echo Using ElementalSiphon');
     elseif (args[1] == '') then
-    elseif (args[1] == '') then
+    elseif (args[1] == 'test') then
+		gFunc.Message('/echo pref_avatar = ' .. settings.pref_avatar ); -- for testing remove when done
     end
 
     --lachelperlib.HandleCommands(args)
@@ -414,6 +500,7 @@ profile.HandleDefault = function()
 	local place = gData.GetEnvironment(); -- This is to find what zone you're in by using place.Area
 	local pet = gData.GetPet();
     local petAction = gData.GetPetAction();
+	local target = gData.GetTarget();
 
     if (petAction ~= nil) then
         HandlePetAction(petAction);
@@ -422,6 +509,21 @@ profile.HandleDefault = function()
 
 	if (player.Status == 'Engaged') then
 
+		-- Pet is active
+		if (pet ~= nil) then
+			if (pet.Status == 'Engaged') then
+                if target ~= nil then
+                    if target.Distance >= 5 then -- You far but engaged and avatar is engaged
+                        gFunc.EquipSet(sets.only_pet_engaged); -- A set with gear just for your Auto and whatever -DT gear for yourself or regen.
+                    elseif target.Distance < 5 then -- You near and engaged and avatar is engaged
+                        --gFunc.EquipSet('tp_' .. tpvarianttable[settings.tpvariant]); -- Master gear set; not used yet
+				        gFunc.EquipSet(sets.pet_melee_addon); -- Auto gear addon item set
+                    end
+                end
+			end
+		end
+		-- End pet is active
+		
 		gFunc.EquipSet(idlevarianttable[settings.idlevariant]);
 
 		if (settings.diset == true) then -- If you turned on DI mode
@@ -436,15 +538,19 @@ profile.HandleDefault = function()
 
 	else -- If idle, dead, zoning, or unknown
 		if (towns:contains(place.Area)) then
-
+			-- Idle in a town/city
 			gFunc.EquipSet(sets.idle_town);
 
 		else
+			-- Idle outside of a town/city
+			if (pet ~= nil) then -- If you have a pet
+				if (pet.Status == 'Engaged') then -- if you aren't engaged (idle) but your avatar is fighting
 
-			if (pet ~= nil) and (pet.Status == 'Engaged') then -- if you don't have your weapon pulled but your pet is fighting
-
-                    gFunc.EquipSet(sets.idle_pet);
-
+                    --gFunc.EquipSet(sets.idle_pet);
+					gFunc.EquipSet(sets.only_pet_engaged);
+				else
+					gFunc.EquipSet(sets.idle_with_pet); -- Avatar is idle
+				end
             else
                 gFunc.EquipSet(sets.idle); -- This is just you doing nothing while not in a town
             end
@@ -453,12 +559,29 @@ profile.HandleDefault = function()
 
 	end
 
-    if (pet ~= nil) then -- if you don't have your weapon pulled but your pet is fighting
-        if (pet.Name == 'Carbuncle') then
+    -- Special rules when avatar is active
+	if (pet ~= nil) then
+        
+		-- Gear for specific avatars
+		if (pet.Name == 'Carbuncle') then
             gFunc.Equip('Hands', 'Carbuncle Mitts');
         elseif (pet.Name == 'Shiva') then
 
         end
+		-- End gear specific avatars
+		
+		-- If avatar is active and want specific gear to match the DayElement
+		if (place.DayElement == AvatarElements[pet.Name]) then
+			gFunc.Equip('Body', 'Summoner\'s Dblt.'); -- Avatar perp -3
+		end
+		-- End gear specific for day
+		
+		-- If avatar element matches the current weather
+		if (place.RawWeatherElement == AvatarElements[pet.Name]) then
+			gFunc.Equip('Head', 'Summoner\'s Horn'); -- Avatar perp -3
+		end
+		-- End gear specific for weather
+		
     end
 
 	if (pet == nil) and (settings.macro_set ~= 1) and (player.Status ~= 'Dead') then
@@ -471,8 +594,6 @@ profile.HandleDefault = function()
     if (player.IsMoving) then
         gFunc.Equip('Feet', 'Herald\'s Gaiters');
     end
-
-    --lachelperlib.HandleDefault();
 
 end
 
@@ -550,6 +671,13 @@ profile.HandleMidshot = function()
 end
 
 profile.HandleWeaponskill = function()
+	local ws = gData.GetAction();
+
+    if (ws.Name == 'Shattersoul') then
+        gFunc.EquipSet(sets.shattersoul);
+    elseif (ws.Name == 'Spirit Taker') then
+        gFunc.EquipSet(sets.spirit_taker);
+    end
 end
 
 return profile;
