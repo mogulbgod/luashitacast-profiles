@@ -1,12 +1,12 @@
 local profile = {};
 local sets = {
-    ['idle'] = {
+    ['idle_Priority'] = {
         --Ammo = 'Koga Shuriken',
-        Head = 'Genbu\'s Kabuto',
+        Head = { 'Genbu\'s Kabuto', 'Destrier Beret' },
         Neck = 'Orochi Nodowa',
         Ear1 = 'Colossus\'s Earring',
         Ear2 = 'Suppanomimi',
-        Body = 'Kirin\'s Osode',
+        Body = { 'Kirin\'s Osode', 'Eminence Doublet' },
         Hands = 'Melaco Mittens',
         Ring1 = 'Warp Ring',
         Ring2 = 'Succor Ring',
@@ -59,19 +59,19 @@ local sets = {
         Legs = 'Pln. Seraweels',
         Feet = 'Hachiryu Sune-Ate',
     },
-    ['tp_lowacc'] = {
-        Head = 'Dampening Tam',
-        Neck = 'Chivalrous Chain',
-        Ear1 = 'Brutal Earring',
-        Ear2 = 'Suppanomimi',
-        Body = 'Enkidu\'s Harness',
-        Hands = 'Floral Gauntlets',
-        Ring1 = 'Rajas Ring',
-        Ring2 = 'Mars\'s Ring',
-        Back = 'Aesir Mantle',
-        Waist = 'Ninurta\'s Sash',
-        Legs = { Name = 'Byakko\'s Haidate', Augment = { [1] = 'STR+2', [2] = '"Store TP"+5', [3] = 'AGI+3' } },
-        Feet = { Name = 'Suzaku\'s Sune-Ate', Augment = { [1] = '"Fast Cast"+1', [2] = 'Haste+3' } },
+    ['tp_lowacc_Priority'] = {
+        Head = { 'Dampening Tam', 'Optical Hat', 'Voyager Sallet', 'Precision Bandana', 'Destrier Beret' },
+        Neck = { 'Ghost Pendant', 'Chivalrous Chain', 'Peacock Amulet', 'Focus Collar' },
+        Ear1 = { 'Brutal Earring', 'Wilderness Earring +1', 'Cassie Earring' },
+        Ear2 = { 'Suppanomimi', 'Optical Earring' },
+        Body = { 'Enkidu\'s Harness', 'Haubergeon +1', 'Scp. Harness +1', 'Brigandine +1', 'Jujitsu Gi', 'Eminence Doublet' },
+        Hands = { 'Enkidu\'s Mittens', 'Alkyoneus\'s Brc.', 'Horomusha Kote', 'Hoshikazu Tekko' },
+        Ring1 = { 'Rajas Ring', 'San d\'Orian Ring' },
+        Ring2 = { 'Sortie Ring', 'Sniper\'s Ring +1', 'Jaeger Ring', 'Shikaree Ring', 'Sardonyx Ring' },
+        Back = { 'Aesir Mantle', 'Forager\'s Mantle', 'Ryl. Army Mantle', 'Accura Cape', 'Fidelity Mantle', 'Traveler\'s Mantle' },
+        Waist = { 'Ninurta\'s Sash', 'Potent Belt', 'Headlong Belt', 'Leather Belt' },
+        Legs = { 'Byakko\'s Haidate', { Name = 'Dst. Breeches', Augment = { [1] = 'Accuracy+8', [2] = 'Phys. dmg. taken -2%' } }, 'Jujitsu Sitabaki', {Name = 'Chain Hose', Augment = { [1] = 'Accuracy+3' } }, 'Hoshikazu Hakama', 'Galkan Braguette' },
+        Feet = { 'Suzaku\'s Sune-Ate', 'Dance Shoes +1', 'Leaping Boots' },
     },
     ['tp_medacc'] = {
         ----Ammo = 'Koga Shuriken',
@@ -225,8 +225,7 @@ local sets = {
         Ammo = 'Koga Shuriken',
     },
     ['movement'] = {
-        Body = 'Kupo Suit',
-        Legs = 'Displaced',
+        Feet = '',
     },
     ['ws_dex'] = {
         Head = 'Maat\'s Cap',
@@ -242,6 +241,29 @@ local sets = {
         Legs = { Name = 'Byakko\'s Haidate', Augment = { [1] = 'STR+2', [2] = '"Store TP"+5', [3] = 'AGI+3' } },
         Feet = 'Adsilio Boots +1',
     },
+    ['curetwo'] = {
+        Main = 'Shinogi',
+        Sub = 'Mercurial Kris',
+        Ammo = 'Manji Shuriken',
+        Head = 'Voyager Sallet',
+        Neck = 'Chivalrous Chain',
+        Ear1 = 'Astral Earring',
+        Ear2 = 'Wilder. Earring +1',
+        Body = 'Kupo Suit',
+        Hands = 'Horomusha Kote',
+        Ring1 = 'Warp Ring',
+        Ring2 = 'Rajas Ring',
+        Back = 'Ryl. Army Mantle',
+        Waist = 'Headlong Belt',
+        Feet = 'Leaping Boots',
+    },
+	['kuposuit'] = {
+        Body = 'Kupo Suit',
+        Legs = 'Displaced',
+    },
+	['destrier'] = {
+        Head = 'Destrier Beret',
+    },
 };
 
 local towns = T{'Aht Urhgan Whitegate','Al Zahbi','Bastok Markets [S]','Bastok Markets','Bastok Mines','Bastok-Jeuno Airship','Celennia Memorial Library','Chateau d\'Oraguille','Eastern Adoulin','Heavens Tower','Kazham','Kazham-Jeuno Airship','Lower Jeuno','Metalworks','Mhaura','Mog Garden','Nashmau','Norg','Northern San d\'Oria','Port Bastok','Port Jeuno','Port San d\'Oria','Port Windurst','Rabao','Ru\'Lude Gardens','San d\'Oria-Jeuno Airship','Selbina','Southern San d\'Oria [S]','Southern San d\'Oria','Tavnazian Safehold','Upper Jeuno','Western Adoulin','Windurst Walls','Windurst Waters [S]','Windurst Waters','Windurst Woods','Windurst-Jeuno Airship',};
@@ -251,7 +273,10 @@ local settings = {
 	diset = false,
 	autoberserk = false,
     tankmode = false,
-    use_night_sets = true,
+	currentlevel = 0,
+	use_night_sets = true,
+	isNight = false, -- changes to true when it's night (18-6) and false when not
+	useIsMoving = true, -- If you want to use gear when moving
 };
 
 local tpvarianttable = {
@@ -304,30 +329,44 @@ profile.HandleCommand = function(args)
 			settings.tankmode = true;
 		end
 		gFunc.Message('Tank Mode is now set to ' .. string.upper(tostring(settings.tankmode)));
-	elseif (args[1] == 'autoberserk') then
+	elseif (args[1] == 'autoberserk') then -- Turns on/off automatic berserk
 		if (settings.autoberserk == true) then
 			settings.autoberserk = false;
 		else
 			settings.autoberserk = true;
 		end
-		gFunc.Message('Auto Berserk is now set to ' .. string.upper(tostring(settings.autoberserk)) .. ' a Work In Progress');
-	elseif (args[1] == 'tpset') then
+		gFunc.Message('Auto Berserk is now set to ' .. string.upper(tostring(settings.autoberserk)) .. ' [a Work In Progress]');
+	elseif (args[1] == 'tpset') then -- To cycle thru TP sets
 		settings.tpvariant = settings.tpvariant + 1;
 		if (settings.tpvariant > #tpvarianttable) then
 			settings.tpvariant = 1;
 		end
 		gFunc.Message('TP Set: ' .. string.upper(tpvarianttable[settings.tpvariant]));
-    elseif (args[1] == 'diset') then
+    elseif (args[1] == 'diset') then  -- For setting a DISet (or to use it for whatever) on/off
 		if (settings.diset == true) then
 			settings.diset = false;
 		else
 			settings.diset = true;
 		end
 		gFunc.Message('DI Set is now set to ' .. string.upper(tostring(settings.diset)));
-	elseif (args[1] == 'test') then
+	elseif (args[1] == 'test') then -- Just for testing
         local rw = gData.GetEnvironment()
         gFunc.Message(rw.Timestamp.hour);
-    end
+	elseif (args[1] == 'nightset') then -- For turning on/off the use of night gear sets
+		if (settings.use_night_sets == true) then
+			settings.use_night_sets = false;
+		else
+			settings.use_night_sets = true;
+		end
+		gFunc.Message('Use Night Set is now set to ' .. string.upper(tostring(settings.use_night_sets)));
+    elseif (args[1] == 'ismoving') then -- For turning on/off using movement speed gear while moving.
+		if (settings.useIsMoving == true) then
+			settings.useIsMoving = false;
+		else
+			settings.useIsMoving = true;
+		end
+		gFunc.Message('Use Moving Set is now set to ' .. string.upper(tostring(settings.useIsMoving)));
+	end
 
 
 end
@@ -335,24 +374,64 @@ end
 profile.HandleDefault = function()
     local player = gData.GetPlayer();
     local zone = gData.GetEnvironment();
+	local myLevel = AshitaCore:GetMemoryManager():GetPlayer():GetMainJobLevel();
+	local night = false;
+	
+    -- *****************************************************
+	-- ********Used for Levelsync gear determination********
+	local myLevel = AshitaCore:GetMemoryManager():GetPlayer():GetMainJobLevel();
+	
+    if (myLevel ~= settings.currentlevel) then
+        gFunc.EvaluateLevels(profile.Sets, myLevel);
+        settings.currentlevel = myLevel;
+	end
+	-- *************************End*************************
+	-- *****************************************************
+	
+	-- Check if it's night time and change the value of settings.isNight
+	if (zone.Timestamp.hour >= 6) and (zone.Timestamp.hour <= 18) then -- This is inbetween the hours of day time
+		night = false;
+	else
+		night = true;
+	end
+	
+	if (night ~= settings.isNight) then
+		settings.isNight = night;
+	end
+	
 
-    if (player.Status == 'Engaged') then
-        if (zone.Timestamp.hour > 18) and (zone.Timestamp.hour < 4) then
-            gFunc.EquipSet('tp_night_' .. tpvarianttable[settings.tpvariant]);
-        else
-            gFunc.EquipSet('tp_' .. tpvarianttable[settings.tpvariant]);
-        end
+    if (player.Status == 'Engaged') then -- When fighting with weapons drawn
+		if (settings.use_night_sets == true) and (settings.isNight == true) then
+			gFunc.EquipSet('tp_night_' .. tpvarianttable[settings.tpvariant]); -- Night set
+		else
+			gFunc.EquipSet('tp_' .. tpvarianttable[settings.tpvariant]); -- Every other time set
+		end
     elseif (player.Status == 'Resting') then
+		--gFunc.EquipSet(sets.resting);
     else
         if towns:contains(zone.Area) then
             gFunc.EquipSet(sets.idle_town);
         else
-            gFunc.EquipSet(sets.idle);
+			if (settings.use_night_sets == true) and (settings.isNight == true) then
+				gFunc.EquipSet(sets.idle_night);
+			else
+				gFunc.EquipSet(sets.idle);
+			end
         end
     end
 
-    if (player.IsMoving) then
-        gFunc.EquipSet(sets.movement);
+    if (player.IsMoving) and (settings.useIsMoving == true) then
+		if (myLevel >= 54) then -- Checks for level to use NIN AF feet
+			if (settings.use_night_sets == true) and (settings.isNight == true) then -- Checks for night time
+				gFunc.EquipSet(sets.movement);
+			else
+				gFunc.EquipSet(sets.movement);
+			end
+		elseif (myLevel < 54) then
+			gFunc.EquipSet(sets.kuposuit); -- Uses Kupo Suit for movement spped
+		elseif (myLevel < 31) then
+			gFunc.EquipSet(sets.destrier); -- Uses Destrier Beret for movement speed
+		end
     end
 
 end
