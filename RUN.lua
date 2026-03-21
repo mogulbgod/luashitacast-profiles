@@ -511,7 +511,7 @@ profile.HandleDefault = function()
 	
     elseif (player.Status == 'Zoning') then
 
-		if (towns:contains(zone)) then
+		--[[if (towns:contains(zone)) then
 			local x = math.random(#costumevartable);
 				if (x == 3) then 
                     gFunc.EquipSet(sets.idle);
@@ -521,7 +521,7 @@ profile.HandleDefault = function()
                 end
 		else
 			gFunc.EquipSet(sets.idle);	
-		end
+		end ]]--
 
 	elseif (player.Status == 'Dead') then
 	
