@@ -2,7 +2,7 @@ local profile = {};
 local sets = {
     ['tp_lowacc'] = {
         Ammo = 'Fire Bomblet',
-        Head = 'Ace\'s Helm',
+        Head = 'Conqueror\'s Helm',
         Neck = 'Chivalrous Chain',
         Ear1 = 'Assault Earring',
         Ear2 = 'Brutal Earring',
@@ -296,17 +296,18 @@ local sets = {
         Feet = 'Shrewd Pumps',
     },
     ['ws_str_lowacc'] = {
-        Head = 'Askar Zucchetto',
+        Ammo = 'Fire Bomblet',
+        Head = 'Nocturnus Helm',
         Neck = 'Fotia Gorget',
         Ear1 = 'Bushinomimi',
-        Ear2 = 'Brutal Earring',
-        Body = { Name = 'Hecatomb Harness', Augment = { [1] = '"Resist Bind"+4', [2] = '"Conserve TP"+5', [3] = 'DEX+4' } },
+        Ear2 = 'Flame Earring',
+        Body = { Name = 'Hecatomb Harness', Augment = { [1] = '"Store TP"+2', [2] = 'DEX+3' } },
         Hands = 'Alkyoneus\'s Brc.',
-        Ring1 = 'Rajas Ring',
+        Ring1 = 'Flame Ring',
         Ring2 = 'Strigoi Ring',
         Back = 'Forager\'s Mantle',
-        Waist = 'Warwolf Belt',
-        Legs = 'Askar Dirs',
+        Waist = { Name = 'Marid Belt', Augment = { [1] = 'STR+3', [2] = 'Accuracy+10' } },
+        Legs = 'Aurum Cuisses',
         Feet = 'Askar Gambieras',
     },
     ['ws_str_medacc'] = {
@@ -338,8 +339,6 @@ local sets = {
         Feet = 'Askar Gambieras',
     },
     ['ws_groundstrike'] = {
-        Main = 'Kaquljaan',
-        Sub = 'Pole Grip',
         Ammo = 'Fire Bomblet',
         Head = 'Askar Zucchetto',
         Neck = 'Fotia Gorget',
@@ -353,6 +352,29 @@ local sets = {
         Waist = 'Fierce Belt',
         Legs = 'Askar Dirs',
         Feet = 'Askar Gambieras',
+    },
+    ['entropy'] = {
+        Ammo = 'Fire Bomblet',
+        Head = 'Maat\'s Cap',
+        Neck = 'Fotia Gorget',
+        Ear1 = 'Flame Earring',
+        Ear2 = 'Aesir Ear Pendant',
+        Body = { Name = 'Crm. Scale Mail', Augment = { [1] = 'STR+5', [2] = 'AGI+3', [3] = 'Haste+2' } },
+        Hands = 'Abyss Gauntlets',
+        Ring1 = 'Aife\'s Annulet',
+        Ring2 = 'Galdr Ring',
+        Back = 'Abyss Cape',
+        Waist = { Name = 'Marid Belt', Augment = { [1] = 'STR+3', [2] = 'Accuracy+10' } },
+        Legs = 'Aurum Cuisses',
+        Feet = 'Homam Gambieras',
+    },
+	['aspir'] = {
+		Ear1 = 'Hirudinea Earring',
+		Waist = 'Charmer\'s Sash',
+    },
+	['drain'] = {
+		Ear1 = 'Hirudinea Earring',
+		Waist = 'Charmer\'s Sash',
     },
 };
 
@@ -410,7 +432,7 @@ profile.OnLoad = function()
 	AshitaCore:GetChatManager():QueueCommand(-1, '/bind !F4 /lac fwd autoseigan');
 	AshitaCore:GetChatManager():QueueCommand(-1, '/bind !F5 /lac fwd autoberserk');
 	
-	gFunc.LockStyle(sets.lockstyle);
+	AshitaCore:GetChatManager():QueueCommand(1, '/lockstyleset 054');
 end
 
 profile.OnUnload = function()
@@ -510,10 +532,10 @@ profile.HandleAbility = function()
     local player = gData.GetPlayer(); -- Info about the player if needed
 	local ability = gData.GetAction(); -- Determines the ability you're taking
 	
-	if (ability.Name == '') then
-		--gFunc.EquipSet(sets.ws_resolution);
-	elseif (ability.Name == '') then
-		--gFunc.EquipSet(sets.ws_kingsjustice);
+	if (ability.Name == 'Last Resort') then
+		gFunc.EquipSet(sets.lastresort);
+	elseif (ability.Name == 'Soul Eater') then
+		gFunc.EquipSet(sets.souleater);
 	elseif (ability.Name == '') then
 		--gFunc.EquipSet(sets.fullbreak);	
 	elseif (ability.Name == '') then
@@ -563,6 +585,12 @@ profile.HandleMidcast = function()
 	else
 		gFunc.EquipSet(sets.matk_default);
 	end
+	
+	if (spell.Name:contains('Drain')) then -- Covers Drain 1 and 2
+		gFunc.EquipSet(sets.drain);
+	elseif (spell.Name == 'Aspir') then
+		gFunc.EquipSet(sets.aspire);
+	end
 end
 
 profile.HandlePreshot = function()
@@ -577,14 +605,8 @@ profile.HandleWeaponskill = function()
 	
 	if (ws.Name == 'Resolution') then
 		gFunc.EquipSet('ws_str_' .. tpvarianttable[settings.tpvariant]);
-	elseif (ws.Name == 'King\'s Justice') then
-		--gFunc.EquipSet(sets.ws_kingsjustice);
-	elseif (ws.Name == 'Weapon Break') then
-		--gFunc.EquipSet(sets.fullbreak);
-    elseif (ws.Name == 'Armor Break') then
-		--gFunc.EquipSet(sets.fullbreak);
-	elseif (ws.Name == 'Ground Strike') then
-		gFunc.EquipSet('ws_str_' .. tpvarianttable[settings.tpvariant]);
+	elseif (ws.Name == 'Upheaval') then
+		gFunc.EquipSet(sets.upheaval);
 	elseif (ws.Name == 'Guillotine') then
 		gFunc.EquipSet('ws_guillotine_' .. tpvarianttable[settings.tpvariant]);
 	elseif (ws.Name == 'Cross Reaper') then
@@ -595,6 +617,8 @@ profile.HandleWeaponskill = function()
 		gFunc.EquipSet('ws_str_' .. tpvarianttable[settings.tpvariant]);
     elseif (ws.Name == 'Ground Strike') then
 		gFunc.EquipSet(sets.ws_groundstrike);
+	elseif (ws.Name == 'Entropy') then
+		gFunc.EquipSet(sets.entropy);
     else
 		-- This is a catch all/default set
 		gFunc.EquipSet(sets.ws_medacc);
