@@ -4,20 +4,20 @@ local puplib = gFunc.LoadFile('puplib.lua');
 local profile = {};
 
 local sets = {
-    ['tp_lowacc'] = {
+    ['tp_lowacc_Priority'] = {
         Range = '',
-        Head = 'Walahra turban',-- Haste+5%
-        Neck = 'Chivalrous Chain',
-        Ear1 = 'Brutal Earring',-- ACC+2
-        Ear2 = 'Bushinomimi',
-        Body = 'Pup. Tobe +1',
-        Hands = 'Enkidu\'s Mittens',-- Acc+5 STR/DEX+4 SB+2
-        Ring1 = 'Rajas Ring',
-        Ring2 = 'Mars\'s Ring',
-		Back = 'Aesir Mantle',
-        Waist = 'Ninurta\'s Sash',
-        Legs = 'Enkidu\'s Subligar',-- STR/DEX+4 STP+5 SB+5
-        Feet = 'Promptitude Solea',
+        Head = { 'Walahra turban', 'Destrier Beret' },
+        Neck = { 'Ghost Pendant', 'Chivalrous Chain', 'Peacock Amulet', 'Focus Collar' },
+        Ear1 = { 'Bushinomimi', 'Wilderness Earring', 'Cassie Earring' },
+        Ear2 = { 'Brutal Earring', 'Ethereal Earring', 'Wilder. Earring +1', 'Optical Earring' },
+        Body = { 'Pup. Tobe +1', 'Enkidu\'s Harness', 'Pln. Khazagand', 'Ebur Harness', 'Aega\'s Doublet', 'Eminence Doublet' },
+        Hands = { 'Enkidu\'s Mittens', 'Combat Mittens +1', 'Garrison Gloves', 'Battle Gloves' },
+        Ring1 = { 'Strigoi Ring', 'Flame Ring', 'Rajas Ring', 'San d\'Orian Ring' },
+        Ring2 = { 'Mars\'s Ring', 'Sniper\'s Ring +1', 'Jaeger Ring', 'Shikaree Ring', 'Sardonyx Ring', 'Bastokan Ring' },
+		Back = { 'Aesir Mantle', 'Ryl. Army Mantle', 'Fidelity Mantle' },
+        Waist = { 'Ninurta\'s Sash', 'Headlong Belt', 'Griot Belt' },
+        Legs = { 'Enkidu\'s Subligar', 'Herder\'s Subligar', 'Brais +1', 'Galkan Braguette' },
+        Feet = { 'Promptitude Solea', 'Mtt. Leggings +1', 'Fisherman\'s Boots' },
     },
     ['tp_medacc'] = {
         Range = '',
@@ -49,21 +49,21 @@ local sets = {
         Legs = 'Pantin Churidars',-- ACC+5 STR+2
         Feet = 'Promptitude Solea',
     },
-    ['idle'] = {
-        Range = 'Animator +1',
-        Ammo = 'Automat. Oil +2',
-        Head = 'Pantin Taj +1',
+    ['idle_Priority'] = {
+        Range = { 'Animator +1', 'Turbo Animator', 'Animator' },
+        Ammo = { 'Automat. Oil +2', 'Automat. Oil +1', 'Automaton Oil' },
+        Head = { 'Pantin Taj +1', 'Destrier Beret' },
         Neck = 'Orochi Nodowa',
-        Ear1 = 'Megasco Earring',
-        Ear2 = 'Hollow Earring',
-        Body = 'Pup. Tobe +1',
-        Hands = 'Pup. Dastanas',
+        Ear1 = { 'Bushinomimi', 'Cassie Earring' },
+        Ear2 = { 'Brutal Earring', 'Ethereal Earring', 'Wilder. Earring +1', 'Optical Earring' },
+        Body = { 'Pup. Tobe +1', 'Aega\'s Doublet', 'Eminence Doublet' },
+        Hands = { 'Pup. Dastanas', 'Combat Mittens +1', 'Garrison Gloves', 'Battle Gloves', 'Fsh. Gloves' },
         Ring1 = 'Rajas Ring',
         Ring2 = 'Warp Ring',
         Back = 'Aesir Mantle',
         Waist = 'Selemnus Belt',
-        Legs = 'Pup. Churidars',
-        Feet = 'Pup. Babouches',
+        Legs = { 'Pup. Churidars', 'Herder\'s Subligar', 'Brais +1', 'Galkan Braguette' },
+        Feet = { 'Pup. Babouches', 'Mtt. Leggings +1', 'Fisherman\'s Boots' },
     },
     ['idle_magesub'] = {
         Range = 'Animator +1',
@@ -224,7 +224,6 @@ local sets = {
         Feet = 'Agrona\'s Leggings',-- STR+3
     },
     ['rest'] = {
-        Range = '',
         Head = 'Pup. Taj',
         Neck = 'Chivalrous Chain',
         Ear1 = 'Megasco Earring',
@@ -255,15 +254,17 @@ local sets = {
         Legs = 'Pup. Churidars',
         Feet = 'Pup. Babouches',
     },
-    ['pet_only_melee'] = {
-        Head = 'Spurrer Beret',
+    ['pet_only_melee_Priority'] = {
+        Head = { 'Spurrer Beret', 'Entrancing Ribbon' },
         Neck = 'Shepherd\'s Chain',
+		Ear1 = {  'Wilderness Earring' },
+		Ear2 = 'Wilder. Earring +1',
         Body = 'Pup. Tobe +1',
         Hands = 'Pup. Dastanas',
-        Back = 'Pantin Cape',
-        Waist = 'Selemnus Belt',
-        Legs = 'Pup. Churidars',
-        Feet = 'Pup. Babouches',
+        Back = { 'Oneiros Cappa', 'Fidelity Mantle' },
+        Waist = 'Beastly Gurdle',
+        Legs = { 'Pup. Churidars', 'Herder\'s Subligar' },
+        Feet = { 'Pup. Babouches', 'Mtt. Leggings' },
     },
     ['pet_melee_addon'] = {
         Head = 'Spurrer Beret',
@@ -336,6 +337,20 @@ local sets = {
         Ring1 = 'Succor Ring',
         Ring2 = 'Serket Ring',
     },
+	['cure'] = {
+		Neck = 'Fylgja Torque +1',
+        Ear1 = 'Astral Earring',
+        Ear2 = 'Loquac. Earring',
+		Back = 'Dew Silk Cape +1',
+        Waist = 'Salire Belt',
+    },
+	['maneuver'] = {
+		Neck = 'Buffoon\'s Collar',
+		Hands = 'Pup. Dastanas',
+    },
+	['repair_oils_Priority'] = {
+		Ammo = { 'Automat. Oil +2', 'Automat. Oil +1', 'Automat. Oil' },
+    },
 
 };
 
@@ -387,6 +402,7 @@ local settings = {
         minHP = 35,
         useWS = 'Stringing Pummel',
     },
+	currentlevel = 0, -- Used for Levelsync gear determination
 	
 };
 
@@ -396,7 +412,7 @@ profile.Packer = {
 };
 
 function CancelAftermath()
-
+	--May not work after future updates in LSB
     local AM1 = gData.GetBuffCount(270);
     local AM2 = gData.GetBuffCount(271);
     local AM3 = gData.GetBuffCount(272);
@@ -415,15 +431,18 @@ function CancelAftermath()
 end
 
 local function HandlePetAction(PetAction)
-	local petaction = PetAction;
 	
-	if (PetAction ~= nil) and pet_ele_spells:contains(PetAction.Name) then
+	if (PetAction == nil) then
+		return;
+	end
+	
+	if (pet_ele_spells:contains(PetAction.Name)) then
 		gFunc.EquipSet(sets.pet_matk);
-	elseif (PetAction ~= nil) and pet_debuff_spells:contains(PetAction.Name) then
+	elseif (pet_debuff_spells:contains(PetAction.Name)) then
 		gFunc.EquipSet(sets.pet_macc);
-	elseif (PetAction ~= nil) and pet_dark_spells:contains(PetAction.Name) then
+	elseif (pet_dark_spells:contains(PetAction.Name)) then
 		gFunc.EquipSet(sets.pet_macc);
-	elseif (PetAction ~= nil) and pet_healing_spells:contains(PetAction.Name) then
+	elseif (pet_healing_spells:contains(PetAction.Name)) then
 		gFunc.EquipSet(sets.pet_cure);
 	else
 	end
@@ -432,9 +451,9 @@ end
 profile.OnLoad = function()
     gSettings.AllowAddSet = true;
 	local pet = gData.GetPet();
-
-
 	local player = gData.GetPlayer()
+	
+	AshitaCore:GetChatManager():QueueCommand(1, '/addon load puphelper');
     AshitaCore:GetChatManager():QueueCommand(1, '/macro book 4');
 	
 	if (player.SubJob == 'WAR') then
@@ -458,7 +477,7 @@ profile.OnLoad = function()
 	-- Binds End
 	
     -- Sets the delay for the Pupsets addon to be slower than the safe  mode
-    AshitaCore:GetChatManager():QueueCommand(1, '/pupset delay 1.2');
+    AshitaCore:GetChatManager():QueueCommand(1, '/pupset delay 1.5');
     AshitaCore:GetChatManager():QueueCommand(1, '/lockstyleset 001');
 	--gFunc.LockStyle(sets.stylelock);
 	
@@ -466,6 +485,8 @@ end
 
 profile.OnUnload = function()
 
+	AshitaCore:GetChatManager():QueueCommand(1, '/addon unload puphelper');
+	
 	-- Bind clean up
 	AshitaCore:GetChatManager():QueueCommand(-1, '/alias delete /pup');
     AshitaCore:GetChatManager():QueueCommand(-1, '/alias delete /autorepair');
@@ -547,6 +568,17 @@ profile.HandleDefault = function()
 	local place = gData.GetEnvironment();
 	local target = gData.GetTarget();
     local frame = puplib.GetFrameName();
+	
+	-- *****************************************************
+	-- ********Used for Levelsync gear determination********
+	local myLevel = AshitaCore:GetMemoryManager():GetPlayer():GetMainJobLevel();
+	
+    if (myLevel ~= settings.currentlevel) then
+        gFunc.EvaluateLevels(profile.Sets, myLevel);
+        settings.currentlevel = myLevel;
+	end
+	-- *************************End*************************
+	-- *****************************************************
 
 	if (player.Status == 'Engaged') then
 		gFunc.EquipSet('tp_' .. tpvarianttable[settings.tpvariant]);
@@ -627,7 +659,14 @@ profile.HandleDefault = function()
     end
 
     if player.IsMoving then
-        gFunc.Equip('Feet', 'Hermes\' Sandals')
+		if (myLevel <= 30) then
+			gFunc.Equip('Head', 'Destrier Beret');
+		elseif (myLevel > 30 and myLevel < 69) then
+			gFunc.Equip('Body', 'Kupo Suit');
+			gFunc.Equip('Legs', 'Displaced');
+		else
+			gFunc.Equip('Feet', 'Hermes\' Sandals');
+		end
     end
 
 end
@@ -637,13 +676,12 @@ profile.HandleAbility = function()
 	local action = gData.GetAction();
 
 		if string.match(action.Name, ' Maneuver') then
-			gFunc.Equip('Hands', 'Pup. Dastanas');
-			gFunc.Equip('Neck', 'Baffoon\'s Collar');
+			gFunc.EquipSet(sets.maneuver);
 			if (settings.diset == true) then
 				gFunc.EquipSet(sets.di_set);
 			end
 		elseif (action.Name == 'Repair') then
-            gFunc.Equip('Ammo', 'Automat. Oil +2');
+            gFunc.EquipSet(sets.repair_oils);
 			gFunc.EquipSet(sets.repair_set);
         elseif (action.Name == 'Maintenance') then
             gFunc.Equip('Ammo', 'Automaton Oil');

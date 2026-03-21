@@ -2,19 +2,47 @@
 -- Version 0.2
 local profile = {};
 local sets = {
-    ['tp_lowacc'] = {
-        Head = 'Askar Zucchetto',
-        Neck = 'Chivalrous Chain',
-        Ear1 = 'Suppanomimi',
-        Ear2 = 'Brutal Earring',
-        Body = { Name = 'Shadow Brstplate', Augment = { [1] = '"Triple Atk."+2', [2] = '"Zanshin"+3' } },
-        Hands = 'Homam Manopolas',
-        Ring1 = 'Strigoi Ring',
-        Ring2 = 'Rajas Ring',
-        Back = 'Aesir Mantle',
-        Waist = 'Ninurta\'s Sash',
-        Legs = 'Askar Dirs',
+    ['idle_town'] = {
+        Head = 'Oneiros Barbut',
+        Neck = 'Orochi Nodowa',
+        Ear1 = 'Magnetic Earring',
+        Ear2 = 'Loquac. Earring',
+        Body = 'Koenig Cuirass',
+        Hands = 'Valor Gauntlets',
+        Ring1 = 'Succor Ring',
+        Ring2 = 'Corneus Ring',
+        Back = 'Shadow Mantle',
+        Waist = 'Warwolf Belt',
+        Legs = 'Koenig Diechlings',
         Feet = { Name = 'Koenig Schuhs', Augment = { [1] = 'Haste+2', [2] = '"Regen"+2' } },
+    },
+	['idle'] = {
+        Head = 'Oneiros Barbut',
+        Neck = 'Orochi Nodowa',
+        Ear1 = 'Magnetic Earring',
+        Ear2 = 'Loquac. Earring',
+        Body = 'Shadow Brstplate',
+        Hands = 'Valor Gauntlets',
+        Ring1 = 'Succor Ring',
+        Ring2 = 'Corneus Ring',
+        Back = 'Shadow Mantle',
+        Waist = 'Warwolf Belt',
+        Legs = 'Koenig Diechlings',
+        Feet = { Name = 'Koenig Schuhs', Augment = { [1] = 'Haste+2', [2] = '"Regen"+2' } },
+    },
+	['tp_lowacc_Priority'] = {
+        Head = { 'Conqueror\'s Helm', 'Voyager Sallet', 'Destrier Beret' },
+        Neck = { 'Ghost Pendant', 'Chivalrous Chain', 'Peacock Amulet', 'Focus Collar' },
+        Ear1 = { 'Suppanomimi', 'Optical Earring' },
+        Ear2 = { 'Brutal Earring', 'Ethereal Earring', 'Wilder. Earring +1', 'Energy Earring +1' },
+        Body = { 'Shadow Brstplate', 'Haubergeon +1', 'Scp. Harness +1', 'Brigandine +1', 'Eminence Doublet' },
+        Hands = { 'Homam Manopolas', 'Alkyoneus\'s Brc.', 'Combat Mittens +1', 'Garrison Gloves', 'Battle Gloves' },
+        Ring1 = { 'Strigoi Ring', 'Flame Ring', 'Rajas Ring', 'San d\'Orian Ring' },
+        Ring2 = { 'Aqua Ring', 'Sniper\'s Ring +1', 'Jaeger Ring', 'Shikaree Ring', 'Sardonyx Ring' },
+        Back = { 'Aesir Mantle', 'Forager\'s Mantle', 'Ryl. Army Mantle', 'Accura Cape', 'Fidelity Mantle', 'Traveler\'s Mantle' },
+        Waist = { 'Ninurta\'s Sash', 'Headlong Belt', 'Griot Belt', 'Leather Belt' },
+        Legs = { 'Askar Dirs', 'Aurum Cuisses', 'Dst. Breeches', 'Chain Hose', 'Solid Cuisses', 'Galkan Braguette' },
+        Feet = { 'Siren\'s Sollerets', 'Koenig Schuhs', 'Battle Boots', 'Leaping Boots' },
     },
 	['tp_medacc'] = {
 		Head = 'Askar Zucchetto',
@@ -87,8 +115,6 @@ local sets = {
         Feet = 'Askar Gambieras',
     },
 	['bdt'] = {
-        Main = 'Brass Jadagna',
-        Sub = 'Koenig Shield',
         Ammo = 'Hedgehog Bomb',
         Head = 'Oneiros Barbut',
         Neck = 'Orochi Nodowa',
@@ -103,40 +129,13 @@ local sets = {
         Legs = { Name = 'Koenig Diechlings', Augment = { [1] = 'Magic dmg. taken -3%', [2] = 'CHR+3', [3] = 'Healing magic skill +4' } },
         Feet = { Name = 'Koenig Schuhs', Augment = { [1] = 'Haste+2', [2] = '"Regen"+2' } },
     },
-    ['idle'] = {
-        Head = 'Oneiros Barbut',
-        Neck = 'Orochi Nodowa',
-        Ear1 = 'Magnetic Earring',
-        Ear2 = 'Loquac. Earring',
-        Body = 'Shadow Brstplate',
-        Hands = 'Valor Gauntlets',
-        Ring1 = 'Succor Ring',
-        Ring2 = 'Corneus Ring',
-        Back = 'Shadow Mantle',
-        Waist = 'Warwolf Belt',
-        Legs = 'Koenig Diechlings',
-        Feet = { Name = 'Koenig Schuhs', Augment = { [1] = 'Haste+2', [2] = '"Regen"+2' } },
-    },
-	['idle_town'] = {
-        Head = 'Oneiros Barbut',
-        Neck = 'Orochi Nodowa',
-        Ear1 = 'Magnetic Earring',
-        Ear2 = 'Loquac. Earring',
-        Body = 'Koenig Cuirass',
-        Hands = 'Valor Gauntlets',
-        Ring1 = 'Succor Ring',
-        Ring2 = 'Corneus Ring',
-        Back = 'Shadow Mantle',
-        Waist = 'Warwolf Belt',
-        Legs = 'Koenig Diechlings',
-        Feet = { Name = 'Koenig Schuhs', Augment = { [1] = 'Haste+2', [2] = '"Regen"+2' } },
-    },
     ['cure'] = {
         Head = 'Valor Coronet',
         Neck = 'Colossus\'s Torque',
         Ear1 = 'Magnetic Earring',
         Body = { Name = 'Crm. Scale Mail', Augment = { [1] = 'STR+5', [2] = 'AGI+3', [3] = 'Haste+2' } },
         Ring1 = 'Karka Ring',
+		Ring2 = 'Aqua Ring',
         Waist = 'Al Zahbi Sash',
         Feet = { Name = 'Koenig Schuhs', Augment = { [1] = 'Haste+2', [2] = '"Regen"+2' } },
     },
@@ -189,6 +188,8 @@ local sets = {
     },
 	['atonement'] = {
     },
+	['savageblade'] = {
+    },
 	['invincible'] = {
     },
 
@@ -200,7 +201,8 @@ local settings = {
 	tpvar = 1,
 	setvar = 1,
 	idle_tank_set = false,
-	tank_mode = true,
+	tank_mode = false,
+	currentlevel = 0, -- Used for Levelsync gear determination
 };
 
 -- Use these names when creating tp sets
@@ -342,6 +344,16 @@ profile.HandleDefault = function()
 
 	local player = gData.GetPlayer(); -- This gets the players info and holds it all in 'player'
 	local zone = gData.GetEnvironment();
+	-- *****************************************************
+	-- ********Used for Levelsync gear determination********
+	local myLevel = AshitaCore:GetMemoryManager():GetPlayer():GetMainJobLevel();
+	
+    if (myLevel ~= settings.currentlevel) then
+        gFunc.EvaluateLevels(profile.Sets, myLevel);
+        settings.currentlevel = myLevel;
+	end
+	-- *************************End*************************
+	-- *****************************************************
 	
 	-- Below is pretty self-explanatory
 	-- Everything is CASE SENSITIVE
