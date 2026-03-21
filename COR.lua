@@ -15,19 +15,19 @@ local sets = {
         Legs = 'Denali Kecks',
         Feet = 'Adsilio Boots +1',
     },
-    ['range_lowacc'] = {
-        Head = { Name = 'Optical Hat', Augment = { [1] = 'Haste+3', [2] = 'HP+15', [3] = 'AGI+3', [4] = 'DEX+3' } },
+    ['range_lowacc_Priority'] = {
+        Head = { 'Optical Hat', 'Emperor Hairpin' },
         Neck = 'Crested Torque',
         Ear1 = 'Wilhelm\'s Earring',
         Ear2 = 'Altdorf\'s Earring',
-        Body = 'Commodore Frac',
-        Hands = { Name = 'Blood Fng. Gnt.', Augment = { [1] = '"Subtle Blow"+4', [2] = '"Snapshot"+3' } },
-        Ring1 = 'Merman\'s Ring',
-        Ring2 = 'Blobnag Ring',
-        Back = 'Psilos Mantle',
+        Body = { 'Commodore Frac', 'Eminence Doublet'},
+        Hands = { 'Blood Fng. Gnt.', 'Jaridah Bazubands', 'Battle Gloves' },
+        Ring1 = { 'Blobnag Ring', 'Sniper\'s Ring +1', 'Rajas Ring', 'San d\'Orian Ring' },
+        Ring2 = { 'Merman\'s Ring', 'Jalzahn\'s Ring', 'Sniper\'s Ring', 'Jaeger Ring', 'Shikaree Ring' },
+        Back = { 'Psilos Mantle', 'Nomad\'s Mantle +1' },
         Waist = 'Precise Belt',
-        Legs = 'Denali Kecks',
-        Feet = 'Adsilio Boots +1',
+        Legs = { 'Denali Kecks', 'Elder\'s Braguette' },
+        Feet = { 'Adsilio Boots +1', 'Leaping Boots' }
     },
     ['range_medacc'] = {
         Head = { Name = 'Optical Hat', Augment = { [1] = 'Haste+3', [2] = 'HP+15', [3] = 'AGI+3', [4] = 'DEX+3' } },
@@ -57,19 +57,19 @@ local sets = {
         Legs = 'Denali Kecks',
         Feet = 'Adsilio Boots +1',
     },
-    ['tp_lowacc'] = {
-        Head = 'Denali Bonnet',
-        Neck = 'Chivalrous Chain',
-        Ear1 = 'Brutal Earring',
-        Ear2 = 'Suppanomimi',
-        Body = 'Pln. Khazagand',
-        Hands = 'Dusk Gloves',
-        Ring1 = 'Rajas Ring',
-        Ring2 = 'Mars\'s Ring',
-        Back = 'Aesir Mantle',
-        Waist = 'Ninurta\'s Sash',
-        Legs = 'Pln. Seraweels',
-        Feet = 'Dusk Ledelsens',
+    ['tp_lowacc_Priority'] = {
+        Head = { 'Denali Bonnet', 'Voyager Sallet', 'Destrier Beret' },
+        Neck = { 'Ghost Pendant', 'Chivalrous Chain', 'Peacock Amulet', 'Focus Collar' },
+        Ear1 = { 'Hollow Earring', 'Optical Earring' },
+        Ear2 = { 'Brutal Earring', 'Megasco Earring', 'Ethereal Earring', 'Wilder. Earring +1', 'Cassie Earring' },
+        Body = { 'Pln. Khazagand', 'Brigandine +1', 'Eminence Doublet' },
+        Hands = { 'Dusk Gloves', 'Pln. Dastanas', 'Jaridah Bazubands', 'Battle Gloves', 'Ryl.Ftm. Gloves' },
+        Ring1 = { 'Rajas Ring', 'San d\'Orian Ring' },
+        Ring2 = { 'Mars\'s Ring', 'Sniper\'s Ring +1', 'Jaeger Ring', 'Shikaree Ring', 'Sardonyx Ring' },
+        Back = { 'Aesir Mantle', 'Ryl. Army Mantle', 'Nomad\'s Mantle +1', 'Traveler\'s Mantle' },
+        Waist = { 'Ninurta\'s Sash', 'Headlong Belt', 'Griot Belt', 'Leather Belt' },
+        Legs = { 'Pln. Seraweels', 'Enkidu\'s Subligar', 'Phl. Trousers', 'Brais +1', 'Galkan Braguette' },
+        Feet = { 'Dusk Ledelsens', 'Battle Boots', 'Leaping Boots' }
     },
     ['tp_medacc'] = {
         Head = 'Denali Bonnet',
@@ -99,19 +99,19 @@ local sets = {
         Legs = 'Pln. Seraweels',
         Feet = 'Dusk Ledelsens',
     },
-    ['idle'] = {
-        Head = 'Comm. Tricorne',
-        Neck = 'Orochi Nodowa',
-        Ear1 = 'Merman\'s Earring',
-        Ear2 = 'Merman\'s Earring',
-        Body = 'Commodore Frac',
-        Hands = 'Commodore Gants',
+	['idle_Priority'] = {
+        Head = { 'Comm. Tricorne', 'Maat\'s Cap', 'Destrier Beret' },
+        Neck = { 'Orochi Nodowa', 'Ranger\'s Necklace' },
+        Ear1 = { 'Merman\'s Earring', 'Optical Earring' },
+        Ear2 = { 'Merman\'s Earring', 'Cassie Earring' },
+        Body = { 'Commodore Frac', 'Brigandine +1', 'Eminence Doublet' },
+        Hands = { 'Commodore Gants', 'Phl. Dastanas', 'Jaridah Bazubands', 'Garrison Gloves', 'Ryl.Ftm. Gloves' },
         Ring1 = 'Blobnag Ring',
-        Ring2 = 'Succor Ring',
-        Back = 'Shadow Mantle',
+        Ring2 = { 'Succor Ring', 'Warp Ring' },
+        Back = { 'Shadow Mantle', 'Nomad\'s Mantle +1', 'Traveler\'s Mantle' },
         Waist = 'Ninurta\'s Sash',
-        Legs = 'Comm. Trews',
-        Feet = 'Adsilio Boots +1',
+        Legs = { 'Pln. Seraweels',  'Enkidu\'s Subligar', 'Phl. Trousers', 'Solid Cuisses', 'Galkan Braguette' },
+        Feet = { 'Hachiryu Sune-Ate', 'Battle Boots', 'Leaping Boots' }
     },
     ['idle_town'] = {
         Head = 'Comm. Tricorne',
@@ -127,9 +127,16 @@ local sets = {
         Legs = 'Comm. Trews',
         Feet = 'Comm. Bottes',
     },
-    ['movement'] = {
+    ['movement_high'] = {
         Hands = 'Commodore Gants',
         Feet = 'Hermes\' Sandals',
+    },
+	['movement_low1'] = {
+        Head = 'Destrier Beret',
+    },
+	['movement_low2'] = {
+        Body = 'Kupo Suit',
+		Legs = 'Displaced',
     },
     ['req'] = {
         Head = 'Denali Bonnet',
@@ -246,6 +253,7 @@ local settings = {
 	tpvariant = 1, -- For the melee TP set
 	rangevariant = 1, -- For range shots
 	diset = false; -- If you use any specific equipment in DI turn this on
+	currentlevel = 0, -- Used for Levelsync gear determination
     kite = false, -- toggle for using your kite set
     msg = true,
     lastroll = '',
@@ -261,7 +269,7 @@ local settings = {
     -- Range distance and warning settings
     MaxRangedWSDistance = 18, -- The distance in yalms furthest to allow for WS, over this its canceled
 	ranged_distance_warning = 19.5, -- if more than this Yalms away you'll be warned
-	distance_audio_warnings = true,
+	distance_audio_warnings = true, -- Not yet working
 	cancelWScheck = true,
 
     --
@@ -449,16 +457,24 @@ end
 local function SwapAmmo() -- Add this fucntion at the end of Pre and Mid shots and WS
 
 	local what_weapon = gData.GetEquipment();
-	local vAmmoTable = nil
+	local vAmmoTable = nil;
 
+	if (what_weapon == nil) then
+		return;
+	end
+	
+	
 	if ranged_weapons:contains(what_weapon.Range.Name) then
 		vAmmoTable = bullets;
-    else
-		gFunc.Error('Check your ranged weapon slots to make sure you have them equiped.');
-        return;
-    end
+		gFunc.Equip('Ammo', SelectAmmo(vAmmoTable));
+	else
+		if (settings.currentlevel >= 75) then 
+			gFunc.Error('Listed ranged weapon not found, no auto ammo swap will happen. [Func: SwapAmmo] - ' .. 'Current: ' .. what_weapon.Range.Name);
+			return;
+		end
+		
+	end
 
-	gFunc.Equip('Ammo', SelectAmmo(vAmmoTable));
 end
 
 local function Play_Sound(TheFile)
@@ -599,6 +615,17 @@ profile.HandleDefault = function()
     local zone = gData.GetEnvironment();
 	--local berserkid = gData.GetAction('Berserk').Id
 	--local berserkrecast = gData.GetAction(berserkid).Recast
+	
+	-- *****************************************************
+	-- ********Used for Levelsync gear determination********
+	local myLevel = AshitaCore:GetMemoryManager():GetPlayer():GetMainJobLevel();
+	
+    if (myLevel ~= settings.currentlevel) then
+        gFunc.EvaluateLevels(profile.Sets, myLevel);
+        settings.currentlevel = myLevel;
+	end
+	-- *************************End*************************
+	-- *****************************************************
 
     if (player.Status == 'Engaged') then
         if (settings.autohasso == true) and (hasso == 0) then
@@ -625,8 +652,13 @@ profile.HandleDefault = function()
     end
 
     if (player.IsMoving) then
-        --gFunc.Equip('Feet', 'Hermes\' Sandals')
-        gFunc.EquipSet(sets.movement);
+		if (myLevel >= 70) then
+			gFunc.EquipSet(sets.movement_high);
+		elseif (myLevel <= 30) then
+			gFunc.EquipSet(sets.movement_low1); -- Uses Destrier Beret at lv.30 and below
+		else
+			gFunc.EquipSet(sets.movement_low2); -- Uses Kupo Suit after Lv.30
+		end
     end
 end
 
@@ -660,6 +692,7 @@ end
 profile.HandlePreshot = function()
     local action = gData.GetAction();
 	local isBarrage = gData.GetBuffCount('Barrage');
+	local lastAmmo;
 
 
 	-- Low ammo check
@@ -668,7 +701,7 @@ profile.HandlePreshot = function()
         if (AmmoCount < settings.low_ammo_amount) then
             gFunc.Message('Current ammo count[ ' .. tostring(AmmoCount) .. ' ] is below minimum[ ' .. tostring(settings.low_ammo_amount) .. ' ] allowed.');
             if (settings.audible_low_ammo_warning == true) then Play_Sound('low_ammo.wav') end
-        elseif (AmmoCount == 0) then
+        elseif (AmmoCount == 0) or (AmmoCount == nil) then
             gFunc.Error('You are out of ammo.')
             if (settings.audible_zero_ammo_alert == true) then Play_Sound('out_of_ammo.wav') end
             gFunc.CancelAction();
