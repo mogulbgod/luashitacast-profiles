@@ -292,10 +292,8 @@ profile.HandleDefault = function()
         AshitaCore:GetChatManager():QueueCommand(1, '/p ### I\'m CHARMED and getting naked! ###');
         settings.Charmed = true;
     elseif (charmed <= 0) and (settings.Charmed == true) then
-        if (settings.Charmed == true) then
             settings.Charmed = false;
             AshitaCore:GetChatManager():QueueCommand(-1, '/lac enable');
-        end
     end
 
     if (player.IsMoving) then

@@ -493,7 +493,7 @@ profile.HandleWeaponskill = function()
 		gFunc.EquipSet(sets.str);
     elseif (ws.Name == 'Shattersoul') then
 		gFunc.EquipSet();
-    elseif (ws.Name == 'Upheavel') then
+    elseif (ws.Name == 'Upheaval') then
 		gFunc.EquipSet(sets.ws_vit_str);
     elseif (ws.Name == '') then
 		gFunc.EquipSet();

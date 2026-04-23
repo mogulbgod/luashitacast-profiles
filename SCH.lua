@@ -1,5 +1,5 @@
 local profile = {};
-local lachelperlib = gFunc.LoadFile('lachelperlib.lua');
+--local lachelperlib = gFunc.LoadFile('lachelperlib.lua');
 local sets = {
     ['idle'] = {
         Main = 'Tamaxchi',
@@ -160,7 +160,7 @@ local elements = T{
     ['Non-Elemental'] = T{'Wizzan Grip'},
 };
 
-local Towns = T{'Aht Urhgan Whitegate', 'Al Zahbi', 'Bastok Markets [S]', 'Bastok Markets', 'Bastok Mines', 'Bastok-Jeuno Airship', 'Celennia Memorial Library', 'Chateau d\'Oraguille', 'Eastern Adoulin', 'Heavens Tower', 'Kazham', 'Kazham-Jeuno Airship', 'Lower Jeuno', 'Metalworks', 'Mhaura', 'Mog Garden', 'Nashmau', 'Norg', 'Northern San d\'Oria', 'Port Bastok', 'Port Jeuno', 'Port San d\'Oria', 'Port Windurst', 'Rabao', 'Ru\'Lude Gardens', 'San d\'Oria-Jeuno Airship', 'Selbina', 'Southern San d\'Oria [S]', 'Southern San d\'Oria', 'Tavnazian Safehold', 'Upper Jeuno', 'Western Adoulin', 'Windurst Walls', 'Windurst Waters [S]', 'Windurst Waters', 'Windurst Woods', 'Windurst-Jeuno Airship',};
+local towns = T{'Aht Urhgan Whitegate', 'Al Zahbi', 'Bastok Markets [S]', 'Bastok Markets', 'Bastok Mines', 'Bastok-Jeuno Airship', 'Celennia Memorial Library', 'Chateau d\'Oraguille', 'Eastern Adoulin', 'Heavens Tower', 'Kazham', 'Kazham-Jeuno Airship', 'Lower Jeuno', 'Metalworks', 'Mhaura', 'Mog Garden', 'Nashmau', 'Norg', 'Northern San d\'Oria', 'Port Bastok', 'Port Jeuno', 'Port San d\'Oria', 'Port Windurst', 'Rabao', 'Ru\'Lude Gardens', 'San d\'Oria-Jeuno Airship', 'Selbina', 'Southern San d\'Oria [S]', 'Southern San d\'Oria', 'Tavnazian Safehold', 'Upper Jeuno', 'Western Adoulin', 'Windurst Walls', 'Windurst Waters [S]', 'Windurst Waters', 'Windurst Woods', 'Windurst-Jeuno Airship',};
 local Staves = T{'Chatoyant Staff', 'Baqil Staff', 'Iridial Staff'}; --Staves that you use from highest priority to lowest
 
 profile.Sets = sets;
@@ -193,17 +193,16 @@ profile.OnLoad = function()
 		AshitaCore:GetChatManager():QueueCommand(1, '/macro set 1');
 	end
 
-	lachelperlib.SetAliasList();
     AshitaCore:GetChatManager():QueueCommand(1, '/lockstyleset 018');
 
 end
 
 profile.OnUnload = function()
-	lachelperlib.Unload()
+	
 end
 
 profile.HandleCommand = function(args)
-	lachelperlib.HandleCommands(args)
+	
 end
 
 profile.HandleDefault = function()
@@ -213,39 +212,32 @@ profile.HandleDefault = function()
     local player = gData.GetPlayer();
     local place = gData.GetEnvironment();
 
-    if (sub_active > 0) then -- This checks to see if Sublimation is active and if it is it keeps the sublimation set on
-        -- but this will not stay on since other gear for cure, nukes and such is more important
-        gFunc.EquipSet(sets.sublimation);
-    else
-        gFunc.Equip('Body', 'Vermillion Cloak'); --Change your body to whatever refresh piece you have.
-    end
-
     if (player.Status == 'Engaged') then
 
-    elseif (player.Status == 'Zoning') then
-
-    else -- Idle
-        if (lachelperlib.towns:contains(place.Area)) then
+    elseif (player.Status == 'Idle') then
+		if (towns:contains(place.Area)) then
             gFunc.EquipSet(sets.idle_town);
-        else
+        else -- Idle not in a town
 			if (sub_active > 0) then -- This checks to see if Sublimation is active and if it is it keeps the sublimation set on
 			-- but this will not stay on since other gear for cure, nukes and such is more important
 				gFunc.EquipSet(sets.sublimation);
 			elseif (sub_complete > 0) then
+				gFunc.EquipSet(sets.idle);
 				gFunc.Equip('Body', 'Vermillion Cloak'); --Change your body to whatever refresh piece you have.
 			else
 				gFunc.EquipSet(sets.idle);
 			end
             
         end
+    elseif (player.Status == 'Resting') then
+	else
+        --Add things like zoning
         
     end
 
     if (player.IsMoving) then
         gFunc.Equip('Feet', 'Herald\'s Gaiters'); -- Movement speed when moving
     end
-
-    lachelperlib.HandleDefault();
 
 end
 

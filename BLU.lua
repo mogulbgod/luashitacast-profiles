@@ -212,7 +212,7 @@ local sets                = {
         Neck = 'Chivalrous Chain',
         Ear1 = 'Aesir Ear Pendant',
         Ear2 = 'Bushinomimi',
-        Body = 'Assault Jerkin',
+        Body = 'Morrigan\'s Robe',
         Hands = 'Alkyoneus\'s Brc.',
         Ring1 = 'Strigoi Ring',
         Ring2 = 'Rajas Ring',
@@ -418,7 +418,7 @@ profile.OnLoad            = function()
     AshitaCore:GetChatManager():QueueCommand(1, '/lockstyleset 014');
     gFunc.EquipSet(sets.onload);
 
-    AshitaCore:GetChatManager():QueueCommand(-1, '/blusets delay 1.2');
+    AshitaCore:GetChatManager():QueueCommand(-1, '/blusets delay 1.5');
 end
 
 profile.OnUnload          = function()

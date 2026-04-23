@@ -1,3 +1,8 @@
+-- Update 4/18/2026: Removed auto maneuvers and auto repair as I've been working on an addon with this functionality
+
+-- Add a check for resting and then pause
+
+
 --require('common');
 --require('common\pupui');
 local puplib = gFunc.LoadFile('puplib.lua');
@@ -6,7 +11,7 @@ local profile = {};
 local sets = {
     ['tp_lowacc_Priority'] = {
         Range = '',
-        Head = { 'Walahra turban', 'Destrier Beret' },
+        Head = { 'Uk\'uxkaj Cap', 'Optical Hat', 'Voyager Sallet', 'Destrier Beret' },
         Neck = { 'Ghost Pendant', 'Chivalrous Chain', 'Peacock Amulet', 'Focus Collar' },
         Ear1 = { 'Bushinomimi', 'Wilderness Earring', 'Cassie Earring' },
         Ear2 = { 'Brutal Earring', 'Ethereal Earring', 'Wilder. Earring +1', 'Optical Earring' },
@@ -23,10 +28,10 @@ local sets = {
         Range = '',
         Head = 'Shinku Hatsuburi',-- STR+3 ACC+3 ATK+5
         Neck = 'Chivalrous Chain',
-        Ear1 = 'Megasco Earring',-- ACC+2
+        Ear1 = 'Luminous Earring',-- ACC+2
         Ear2 = 'Brutal Earring',
-        Body = 'Pln. Khazagand',
-        Hands = 'Enkidu\'s Mitten',-- Acc+5 Atk+5
+        Body = 'Pantin Tobe +1',
+        Hands = 'Enkidu\'s Mittens',-- Acc+5 Atk+5
         Ring1 = 'Rajas Ring',
         Ring2 = 'Mars\'s Ring',
 		Back = 'Aesir Mantle',
@@ -40,8 +45,8 @@ local sets = {
         Neck = 'Peacock Amulet',
         Ear1 = 'Megasco Earring',-- ACC+2
         Ear2 = 'Bushinomimi',
-        Body = 'Pln. Khazagand',
-        Hands = 'Enkidu\'s Mitten',-- Acc+5 Atk+5
+        Body = 'Pantin Tobe +1',
+        Hands = 'Enkidu\'s Mittens',-- Acc+5 Atk+5
         Ring1 = 'Oneiros Annulet',
         Ring2 = 'Mars\'s Ring',
 		Back = 'Aesir Mantle',
@@ -56,60 +61,56 @@ local sets = {
         Neck = 'Orochi Nodowa',
         Ear1 = { 'Bushinomimi', 'Cassie Earring' },
         Ear2 = { 'Brutal Earring', 'Ethereal Earring', 'Wilder. Earring +1', 'Optical Earring' },
-        Body = { 'Pup. Tobe +1', 'Aega\'s Doublet', 'Eminence Doublet' },
-        Hands = { 'Pup. Dastanas', 'Combat Mittens +1', 'Garrison Gloves', 'Battle Gloves', 'Fsh. Gloves' },
-        Ring1 = 'Rajas Ring',
+        Body = { 'Pantin Tobe +1', 'Aega\'s Doublet', 'Eminence Doublet' },
+        Hands = { 'Pup. Dastanas +1', 'Combat Mittens +1', 'Garrison Gloves', 'Battle Gloves', 'Fsh. Gloves' },
+        Ring1 = 'Succor Ring',
         Ring2 = 'Warp Ring',
-        Back = 'Aesir Mantle',
-        Waist = 'Selemnus Belt',
-        Legs = { 'Pup. Churidars', 'Herder\'s Subligar', 'Brais +1', 'Galkan Braguette' },
-        Feet = { 'Pup. Babouches', 'Mtt. Leggings +1', 'Fisherman\'s Boots' },
+        Back = 'Shadow Mantle',
+        Waist = 'Beastly Girdle',
+        Legs = { 'Pup. Churidars +1', 'Herder\'s Subligar', 'Brais +1', 'Galkan Braguette' },
+        Feet = { 'Pup. Babouches +1', 'Mtt. Leggings +1', 'Fisherman\'s Boots' },
     },
     ['idle_magesub'] = {
-        Range = 'Animator +1',
-        Ammo = 'Automat. Oil +2',
         Head = 'Displaced',
         Neck = 'Orochi Nodowa',
         Ear1 = 'Megasco Earring',
         Ear2 = 'Hollow Earring',
         Body = 'Vermillion Cloak',
-        Hands = 'Pup. Dastanas',
+        Hands = 'Pup. Dastanas +1',
         Ring1 = 'Succor Ring',
         Ring2 = 'Warp Ring',
         Back = 'Aesir Mantle',
         Waist = 'Selemnus Belt',
-        Legs = 'Pup. Churidars',
-        Feet = 'Pup. Babouches',
+        Legs = 'Pup. Churidars +1',
+        Feet = 'Pup. Babouches +1',
     },
     ['idle_town'] = {
-        Range = 'Animator +1',
-        Ammo = 'Automat. Oil +2',
         Head = 'Pantin Taj +1',
         Neck = 'Shepherd\'s Chain',
-        Ear1 = 'Megasco Earring',
+        Ear1 = 'Luminous Earring',
         Ear2 = 'Hollow Earring',
-        Body = 'Pup. Tobe +1',
-        Hands = 'Pup. Dastanas',
+        Body = 'Pantin Tobe +1',
+        Hands = 'Pup. Dastanas +1',
         Ring1 = 'Rajas Ring',
         Ring2 = 'Warp Ring',
         Back = 'Aesir Mantle',
         Waist = 'Selemnus Belt',
-        Legs = 'Pup. Churidars',
-        Feet = 'Pup. Babouches',
+        Legs = 'Pup. Churidars +1',
+        Feet = 'Pup. Babouches +1',
     },
     ['ws_default_lowacc'] = {
-        Head = 'Shinku Hatsuburi',
-        Neck = 'Fotia Gorget',
-        Ear1 = 'Bushinomimi',
-        Ear2 = 'Aesir ear pendant',
-        Body = 'Pln. Khazagand',
-        Hands = 'Enkidu\'s Mitten',
-        Ring1 = 'Rajas Ring',
-        Ring2 = 'Mars\'s Ring',
+        Head = 'Maat\'s Cap',-- STR+7
+        Neck = 'Fotia Gorget',-- STR+3 ACC+5
+        Ear1 = 'Bushinomimi',-- STR+2
+        Ear2 = 'Aesir ear pendant',-- ATK+7
+        Body = 'Pln. Khazagand',--Acc+10 Crit Rate +
+        Hands = 'Enkidu\'s Mittens',-- Acc+5 Atk+5
+        Ring1 = 'Rajas Ring',-- STR+5
+        Ring2 = 'Strigoi Ring',-- STR+6
 		Back = 'Aesir Mantle',
-        Waist = 'Potent Belt',
-        Legs = 'Pln. Seraweels',--STR+3 ACC+4
-        Feet = 'Pup. Babouches',
+        Waist = 'Potent Belt',-- STR+3 ACC+8
+        Legs = 'Enkidu\'s Subligar',--STR+3 ACC+4
+        Feet = 'Agrona\'s Leggings',-- STR+3
     },
     ['ws_default_medacc'] = {
         Head = 'Shinku Hatsuburi',
@@ -117,13 +118,13 @@ local sets = {
         Ear1 = 'Bushinomimi',
         Ear2 = 'Aesir ear pendant',
         Body = 'Pln. Khazagand',
-        Hands = 'Enkidu\'s Mitten',
+        Hands = 'Enkidu\'s Mittens',
         Ring1 = 'Rajas Ring',
         Ring2 = 'Mars\'s Ring',
 		Back = 'Aesir Mantle',
         Waist = 'Potent Belt',
         Legs = 'Pln. Seraweels',--STR+3 ACC+4
-        Feet = 'Pup. Babouches',
+        Feet = 'Pup. Babouches +1',
     },
     ['ws_default_highacc'] = {
         Head = 'Shinku Hatsuburi',
@@ -131,7 +132,7 @@ local sets = {
         Ear1 = 'Bushinomimi',
         Ear2 = 'Aesir ear pendant',
         Body = 'Pln. Khazagand',
-        Hands = 'Enkidu\'s Mitten',
+        Hands = 'Enkidu\'s Mittens',
         Ring1 = 'Oneiros Annulet',
         Ring2 = 'Mars\'s Ring',
 		Back = 'Aesir Mantle',
@@ -140,18 +141,18 @@ local sets = {
         Feet = 'Agrona\'s Leggings',
     },
 	['ws_shijin_lowacc'] = {
-        Head = 'Maat\'s Cap',-- DEX+7
+        Head = 'Maat\'s Cap',
         Neck = 'Fotia Gorget',
-        Ear1 = 'Hollow Earring',-- DEX+2
-        Ear2 = 'Pixie Earring',-- DEX+3
-        Body = 'Pln. Khazagand',--Acc+10 Crit Rate +
-        Hands = 'Enkidu\'s Mitten',-- DEX+2
-        Ring1 = 'Rajas Ring',-- DEX+5
-        Ring2 = 'Zilant Ring',-- DEX+6
-		Back = 'Pantin Cape',
-        Waist = 'Potent Belt',-- STR+3 ACC+8
-        Legs = 'Enkidu\'s Subligar',--DEX+4 ACC+4
-        Feet = 'Agrona\'s Leggings',-- STR+3
+        Ear1 = 'Delta Earring',
+        Ear2 = 'Hollow Earring',
+        Body = 'Enkidu\'s Harness',
+        Hands = 'Enkidu\'s Mittens',
+        Ring1 = 'Rajas Ring',
+        Ring2 = 'Zilant Ring',
+        Back = 'Pantin Cape',
+        Waist = 'Potent Belt',
+        Legs = 'Enkidu\'s Subligar',
+        Feet = 'Agrona\'s Leggings',
     },
     ['ws_shijin_medacc'] = {
         Head = 'Optical Hat',-- DEX+3
@@ -159,7 +160,7 @@ local sets = {
         Ear1 = 'Hollow Earring',-- DEX+2
         Ear2 = 'Aesir ear pendant',-- ATK+7
         Body = 'Pln. Khazagand',--Acc+10 Crit Rate +
-        Hands = 'Enkidu\'s Mitten',-- DEX+4
+        Hands = 'Enkidu\'s Mittens',-- DEX+4
         Ring1 = 'Rajas Ring',-- DEX+5
         Ring2 = 'Zilant Ring',-- DEX+6
 		Back = 'Aesir Mantle',
@@ -173,7 +174,7 @@ local sets = {
         Ear1 = 'Hollow Earring',-- DEX+2
         Ear2 = 'Aesir ear pendant',-- ATK+7
         Body = 'Pln. Khazagand',--Acc+10 Crit Rate +
-        Hands = 'Enkidu\'s Mitten',-- DEX+4
+        Hands = 'Enkidu\'s Mittens',-- DEX+4
         Ring1 = 'Zilant Ring',-- DEX+6
         Ring2 = 'Rajas Ring',-- DEX+5
 		Back = 'Aesir Mantle',
@@ -182,26 +183,26 @@ local sets = {
         Feet = 'Agrona\'s Leggings',-- STR+3
     },
 	['ws_pummel_lowacc'] = {
-        Head = 'Maat\'s Cap',-- STR+7
-        Neck = 'Fotia Gorget',-- STR+3 ACC+5
-        Ear1 = 'Bushinomimi',-- STR+2
-        Ear2 = 'Aesir ear pendant',-- ATK+7
-        Body = 'Pln. Khazagand',--Acc+10 Crit Rate +
-        Hands = 'Enkidu\'s Mitten',-- Acc+5 Atk+5
-        Ring1 = 'Rajas Ring',-- STR+5
-        Ring2 = 'Strigoi Ring',-- STR+6
-		Back = 'Aesir Mantle',
-        Waist = 'Potent Belt',-- STR+3 ACC+8
-        Legs = 'Enkidu\'s Subligar',--STR+3 ACC+4
-        Feet = 'Agrona\'s Leggings',-- STR+3
+        Head = 'Maat\'s Cap',
+        Neck = 'Fotia Gorget',
+        Ear1 = 'Bushinomimi',
+        Ear2 = 'Brutal Earring',
+        Body = 'Enkidu\'s Harness',
+        Hands = 'Pup. Dastanas +1',
+        Ring1 = 'Rajas Ring',
+        Ring2 = 'Strigoi Ring',
+        Back = 'Aesir Mantle',
+        Waist = 'Potent Belt',
+        Legs = 'Enkidu\'s Subligar',
+        Feet = 'Agrona\'s Leggings',
     },
     ['ws_pummel_medacc'] = {
         Head = 'Shinku Hatsuburi',-- STR+3 ACC+3 ATK+5
         Neck = 'Fotia Gorget',-- STR+3 ACC+5
         Ear1 = 'Bushinomimi',-- STR+2
         Ear2 = 'Aesir ear pendant',-- ATK+7
-        Body = 'Pln. Khazagand',--Acc+10 Crit Rate +
-        Hands = 'Enkidu\'s Mitten',-- Acc+5 Atk+5
+        Body = 'Enkidu\'s Harness',
+        Hands = 'Enkidu\'s Mittens',-- Acc+5 Atk+5
         Ring1 = 'Rajas Ring',-- STR+5
         Ring2 = 'Strigoi Ring',-- STR+6
 		Back = 'Aesir Mantle',
@@ -214,8 +215,8 @@ local sets = {
         Neck = 'Fotia Gorget',-- STR+3 ACC+5
         Ear1 = 'Bushinomimi',-- STR+2
         Ear2 = 'Aesir ear pendant',-- ATK+7
-        Body = 'Pln. Khazagand',--Acc+10 Crit Rate +
-        Hands = 'Enkidu\'s Mitten',-- Acc+5 Atk+5
+        Body = 'Pln. Khazagand',-- Acc+10 Crit Rate +
+        Hands = 'Enkidu\'s Mittens',-- Acc+5 Atk+5
         Ring1 = 'Oneiros Annulet',-- ACC+8
         Ring2 = 'Strigoi Ring',-- STR+5
 		Back = 'Aesir Mantle',
@@ -223,69 +224,70 @@ local sets = {
         Legs = 'Pln. Seraweels',--STR+3 ACC+4
         Feet = 'Agrona\'s Leggings',-- STR+3
     },
-    ['rest'] = {
-        Head = 'Pup. Taj',
+    ['rest_Priority'] = {
+        Head = 'Puppetry Taj +1',
         Neck = 'Chivalrous Chain',
         Ear1 = 'Megasco Earring',
         Ear2 = 'Aesir ear pendant',
-        Body = 'Pup. Tobe +1',
-        Hands = 'Pup. Dastanas',
-        Ring1 = 'Setae Ring',
+        Body = 'Pantin Tobe +1',
+        Hands = 'Pup. Dastanas +1',
+        Ring1 = 'Succor Ring',
         Ring2 = 'Rajas Ring',
 		Back = 'Aesir Mantle',
         Waist = 'Selemnus Belt',
-        Legs = 'Pup. Churidars',
-        Feet = 'Pup. Babouches',
+        Legs = 'Pup. Churidars +1',
+        Feet = 'Pup. Babouches +1',
     },
 	['repair_set'] = {
-        Feet = 'Pup. Babouches',
+        Feet = 'Pup. Babouches +1',
 		--Ammo = 'Automaton Oil +2',
     },
 	['di_set'] = {
         Main = 'Maochinoli',
-		--Feet = 'Pup. Babouches',
+		--Feet = 'Pup. Babouches +1',
 		--Ammo = 'Automaton Oil +2',
     },
     ['stylelock'] = {
         Main = 'Kenkonken',
         Head = 'Shinku Hatsuburi',
         Body = 'Pup. Tobe +1',
-        Hands = 'Pup. Dastanas',
-        Legs = 'Pup. Churidars',
-        Feet = 'Pup. Babouches',
+        Hands = 'Pup. Dastanas +1',
+        Legs = 'Pup. Churidars +1',
+        Feet = 'Pup. Babouches +1',
     },
     ['pet_only_melee_Priority'] = {
-        Head = { 'Spurrer Beret', 'Entrancing Ribbon' },
+        Head = { 'Puppetry Taj +1', 'Entrancing Ribbon' },
         Neck = 'Shepherd\'s Chain',
 		Ear1 = {  'Wilderness Earring' },
 		Ear2 = 'Wilder. Earring +1',
-        Body = 'Pup. Tobe +1',
-        Hands = 'Pup. Dastanas',
+        Body = 'Pantin Tobe +1',
+        Hands = 'Pantin Dastanas',
         Back = { 'Oneiros Cappa', 'Fidelity Mantle' },
-        Waist = 'Beastly Gurdle',
-        Legs = { 'Pup. Churidars', 'Herder\'s Subligar' },
-        Feet = { 'Pup. Babouches', 'Mtt. Leggings' },
+        Waist = { 'Beastly Girdle', 'Selemnus Belt' },
+        Legs = { 'Pup. Churidars +1', 'Herder\'s Subligar' },
+        Feet = { 'Pup. Babouches +1', 'Mtt. Leggings' },
     },
-    ['pet_melee_addon'] = {
-        Head = 'Spurrer Beret',
+	-- Addon set will go over a your base melee set
+    ['pet_melee_addon_Priority'] = {
+        Head = 'Puppetry Taj +1',
         Neck = 'Shepherd\'s Chain',
-        --Body = 'Pup. Tobe +1',
-        --Hands = 'Pup. Dastanas',
+        --Body = 'Pantin Tobe +1',
+        --Hands = 'Pup. Dastanas +1',
         Back = 'Pantin Cape',
         --Waist = 'Selemnus Belt',
-        --Legs = 'Pup. Churidars',
+        --Legs = 'Pup. Churidars +1',
     },
-    ['pet_matk'] = {
+    ['pet_matk_Priority'] = {
         Head = 'Oneiros Headgear',
         Neck = 'Shepard\'s Chain',
-        Body = 'Pup. Tobe +1',
+        Body = 'Pantin Tobe +1',
         Hands = 'Pantin Dastanas',
         Back = 'Fidelity mantle',
-        Waist = 'Selemnus Belt',
+        Waist = { 'Beastly Girdle', 'Selemnus Belt' },
         Legs = 'Pantin Churidars',
-        Feet = 'Pantin Babouches',
+        Feet = 'Ptn. Babouches +1',
     },
-	['pet_macc'] = {
+	['pet_macc_Priority'] = {
         Head = 'Oneiros Headgear',
         Neck = 'Chivalrous Chain',
         Body = 'Pup. Tobe +1',
@@ -293,43 +295,120 @@ local sets = {
         Back = 'Fidelity mantle',
         Waist = 'Selemnus Belt',
         Legs = 'Pantin Churidars',
-        Feet = 'Pantin Babouches',
+        Feet = 'Ptn. Babouches +1',
     },
-    ['pet_cure'] = {
-        Head = 'Spurrer Beret',
-        Body = 'Pup. Tobe +1',
+    ['pet_cure_Priority'] = {
+        Head = 'Puppetry Taj +1',
+        Body = 'Pantin Tobe +1',
         Hands = 'Pantin Dastanas',
         Waist = 'Selemnus Belt',
-        Legs = 'Pup. Churidars',
+        Legs = 'Pup. Churidars +1',
         Feet = 'Aife\'s Pumps',
     },
+	-- CHR = Light Maneuvers
     ['chr'] = {
-        Head = 'Maat\'s Cap', --CHR+7
-        Neck = 'Flower Necklace', --CHR+3
-        Ear1 = 'Delta Earring', --CHR+2
+        Head = 'Maat\'s Cap',
+        Neck = 'Temp. Torque',
+        Ear1 = 'Delta Earring',
         Ear2 = 'Roundel Earring',
-        Body = { Name = 'Pup. Tobe +1', Augment = { [1] = '"Store TP"+3', [2] = '"Martial Arts"+2' } },
-        Hands = 'Pup. Dastanas',
-        Ring1 = 'Light Ring', --CHR+5
-        Ring2 = 'Angel\'s Ring', --CHR+4
-        Back = 'Jester\'s Cape +1', --CHR+10
-        Waist = 'Corsette', --CHR+5
-        Legs = 'Pup. Churidars', --CHR+3
-        Feet = 'Dance Shoes +1', --CHR+5
-    },
-    ['str'] = {
-        Head = 'Maat\'s Cap', -- STR+7
-        Neck = 'Ire Torque', --STR+4
-        Ear1 = 'Giant\'s Earring', --STR+1
-        Ear2 = 'Bushinomimi', --STR+2
         Body = 'Pup. Tobe +1',
+        Hands = 'Pantin Dastanas',
+        Ring1 = 'Light Ring',
+        Ring2 = 'Veela Ring',
+        Back = 'Jester\'s Cape +1',
+        Waist = 'Corsette',
+        Legs = 'Pup. Churidars +1',
+        Feet = 'Dance Shoes +1',
+    },
+	-- STR = Fire Maneuvers
+    ['str'] = {
+        Head = 'Maat\'s Cap',
+        Neck = 'Ire Torque',
+        Ear1 = 'Flame Earring',
+        Ear2 = 'Bushinomimi',
+        Body = 'Enkidu\'s Harness',
         Hands = 'Enkidu\'s Mittens',
-        Ring1 = 'Rajas Ring', --STR+5
-        Ring2 = 'Strigoi Ring',-- STR+6
+        Ring1 = 'Rajas Ring',
+        Ring2 = 'Strigoi Ring',
         Back = 'Ryl. Army Mantle',
         Waist = 'Buccaneer\'s Belt',
         Legs = 'Enkidu\'s Subligar',
-        Feet = 'Pup. Babouches',
+        Feet = 'Agrona\'s Leggings',
+    },
+	-- VIT = Earth Maneuvers
+	['vit'] = {
+        Head = 'Maat\'s Cap',
+        Neck = 'Fortitude Torque',
+        Ear1 = 'Cassie Earring',
+        Ear2 = 'Brutal Earring',
+        Body = 'Enkidu\'s Harness',
+        Hands = 'Garden Bangles',
+        Ring1 = 'Portus Ring',
+        Ring2 = 'Corneus Ring',
+        Back = 'Oneiros Cappa',
+        Waist = 'Beastly Girdle',
+        Legs = 'Pantin Churidars',
+        Feet = 'Pup. Babouches +1',
+    },
+	-- AGI = Wind Maneuvers
+	['agi'] = {
+        Head = 'Maat\'s Cap',
+        Neck = 'Orochi Nodowa',
+        Ear1 = 'Wilhelm\'s Earring',
+        Ear2 = 'Helenus\'s Earring',
+        Body = 'Enkidu\'s Harness',
+        Hands = 'Pup. Dastanas +1',
+        Ring1 = 'Moepapa Ring',
+        Ring2 = 'Blobnag Ring',
+        Back = 'Aesir Mantle',
+        Waist = 'Beastly Girdle',
+        Legs = 'Acrobat\'s Breeches',
+        Feet = 'Pup. Babouches +1',
+    },
+	-- DEX = Thunder Maneuvers
+	['dex'] = {
+        Head = 'Maat\'s Cap',
+        Neck = 'Halting Stole',
+        Ear1 = 'Delta Earring',
+        Ear2 = 'Pixie Earring',
+        Body = 'Ebur Harness',
+        Hands = 'Enkidu\'s Mittens',
+        Ring1 = 'Rajas Ring',
+        Ring2 = 'Zilant Ring',
+        Back = 'Pantin Cape',
+        Waist = 'Beastly Girdle',
+        Legs = 'Enkidu\'s Subligar',
+        Feet = 'Mtt. Leggings +1',
+    },
+	-- INT = Ice Maneuvers
+	['int'] = {
+        Head = 'Maat\'s Cap',
+        Neck = 'Aife\'s Medal',
+        Ear1 = 'Bushinomimi',
+        Ear2 = 'Brutal Earring',
+        Body = 'Pup. Tobe +1',
+        Hands = 'Dune Bracers',
+        Ring1 = 'Aife\'s Annulet',
+        Ring2 = 'Galdr Ring',
+        Back = 'Gleeman\'s Cape',
+        Waist = 'Desert Rope',
+        Legs = 'Pup. Churidars +1',
+        Feet = 'Rostrum Pumps',
+    },
+	-- MND = Water Maneuvers
+	['mnd'] = {
+        Head = 'Maat\'s Cap',
+        Neck = 'Aife\'s Medal',
+        Ear1 = 'Aqua Earring',
+        Ear2 = 'Aqua Earring',
+        Body = 'Pup. Tobe +1',
+        Hands = 'Devotee\'s Mitts',
+        Ring1 = 'Karka Ring',
+        Ring2 = 'Tamas Ring',
+        Back = 'Dew Silk Cape +1',
+        Waist = 'Salire Belt',
+        Legs = 'Pup. Churidars +1',
+        Feet = 'Aife\'s Pumps',
     },
     ['whmsub'] = {
         Ear1 = 'Astral Earring',
@@ -339,18 +418,61 @@ local sets = {
     },
 	['cure'] = {
 		Neck = 'Fylgja Torque +1',
-        Ear1 = 'Astral Earring',
+        Ear1 = 'Roundel Earring',
         Ear2 = 'Loquac. Earring',
 		Back = 'Dew Silk Cape +1',
         Waist = 'Salire Belt',
     },
 	['maneuver'] = {
 		Neck = 'Buffoon\'s Collar',
-		Hands = 'Pup. Dastanas',
+		Hands = 'Pup. Dastanas +1',
     },
 	['repair_oils_Priority'] = {
-		Ammo = { 'Automat. Oil +2', 'Automat. Oil +1', 'Automat. Oil' },
+		Ammo = { 'Automat. Oil +2', 'Automat. Oil +1', 'Automaton Oil' },
     },
+	-- Low level 30 and below, you can just use just the Kupo Suit here, uncomment out the 2 commented lines and remove/comment out the Head
+	['movement1'] = {
+		Head = 'Destrier Beret',
+		--Body = 'Kupo Suit',
+		--Legs = 'Displaced',
+    },
+	-- Mid level 31-69
+	['movement2'] = {
+		Body = 'Kupo Suit',
+		Legs = 'Displaced',
+    },
+	-- High level 70+
+	['movement3'] = {
+		Feet = 'Hermes\' Sandals',
+    },
+	-- Add pieces that specifically boost Waltz, this will combine with the chr set.
+	['waltz'] = {
+		Ear1 = 'Roundel Earring',
+    },
+	-- Accuracy helps for steps
+	['step'] = {
+		Ear1 = 'Choreia Earring',
+    },
+    ['ws_str_vit'] = {
+        Head = 'Maat\'s Cap',
+        Neck = 'Fotia Gorget',
+        Ear1 = 'Bushinomimi',
+        Ear2 = 'Flame Earring',
+        Body = 'Enkidu\'s Harness',
+        Hands = { Name = 'Pup. Dastanas +1', Augment = { [1] = 'Haste+3', [2] = '"Dbl.Atk."+3' } },
+        Ring1 = 'Strigoi Ring',
+        Ring2 = 'Corneus Ring',
+        Back = 'Oneiros Cappa',
+        Waist = 'Beastly Girdle',
+        Legs = 'Pantin Churidars',
+        Feet = 'Agrona\'s Leggings',
+    },
+	['charmed'] = {
+		Ring1 = 'Jelly Ring',
+		Ring2 = 'Succor Ring',
+		Back = 'Shadow Mantle',
+    },
+    
 
 };
 
@@ -363,7 +485,7 @@ local pet_ele_spells = T{
 		'Thunder', 'Thunder II', 'Thunder III', 'Thunder IV', 'Thunder V',
 };
 local pet_debuff_spells = T{'Slow', 'Paralyze', 'Silence', 'Blind', 'Bio', 'Bio II', 'Dia', 'Dia II', 'Poison', 'Poison II',};
-local pet_dark_spells = T{'Aspir', 'Drain', 'Absorb-INT', 'Dread Spikes',};
+local pet_dark_spells = T{'Aspir', 'Drain', 'Absorb-INT', 'Dread Spikes', 'Absorb-Attri'};
 local pet_healing_spells = T{'Cure', 'Cure II', 'Cure III', 'Cure IV', 'Cure V', 'Cure VI',};
 
 local towns = T{'Aht Urhgan Whitegate','Al Zahbi','Bastok Markets [S]','Bastok Markets','Bastok Mines','Bastok-Jeuno Airship','Celennia Memorial Library','Chateau d\'Oraguille','Eastern Adoulin','Heavens Tower','Kazham','Kazham-Jeuno Airship','Lower Jeuno','Metalworks','Mhaura','Mog Garden','Nashmau','Norg','Northern San d\'Oria','Port Bastok','Port Jeuno','Port San d\'Oria','Port Windurst','Rabao','Ru\'Lude Gardens','San d\'Oria-Jeuno Airship','Selbina','Southern San d\'Oria [S]','Southern San d\'Oria','Tavnazian Safehold','Upper Jeuno','Western Adoulin','Windurst Walls','Windurst Waters [S]','Windurst Waters','Windurst Woods','Windurst-Jeuno Airship',};
@@ -391,18 +513,19 @@ local manelements = {
 local settings = {
 	tpvariant = 1,
 	diset = false;
-	automan = false,
-	autorepair = false,
-	repairpercent = 20,
-	maneuver = {};
-    usedrepair = false,
+	currentlevel = 0, -- Used for Levelsync gear determination
+	isCharmed = false,
+	
+	-- Manual change the below settings to your prefered behavior
+	EngagedNoMoveSwap = false, -- If you're engaged, setting this to true will stop the swapping of movement speed set when moving.
+	
     autoWS = {
         active = false,
         minTP = 1200,
         minHP = 35,
         useWS = 'Stringing Pummel',
     },
-	currentlevel = 0, -- Used for Levelsync gear determination
+	
 	
 };
 
@@ -453,7 +576,7 @@ profile.OnLoad = function()
 	local pet = gData.GetPet();
 	local player = gData.GetPlayer()
 	
-	AshitaCore:GetChatManager():QueueCommand(1, '/addon load puphelper');
+	AshitaCore:GetChatManager():QueueCommand(1, '/addon load pupassist');
     AshitaCore:GetChatManager():QueueCommand(1, '/macro book 4');
 	
 	if (player.SubJob == 'WAR') then
@@ -466,9 +589,9 @@ profile.OnLoad = function()
 
 	-- Binds Start
 	AshitaCore:GetChatManager():QueueCommand(-1, '/alias /pup /lac fwd');
-	AshitaCore:GetChatManager():QueueCommand(-1, '/alias /autorepair /lac fwd autorepair');
     AshitaCore:GetChatManager():QueueCommand(-1, '/alias /ps /pupset');
     AshitaCore:GetChatManager():QueueCommand(-1, '/alias /psl /pupset load');
+	AshitaCore:GetChatManager():QueueCommand(-1, '/alias /pss /pupset save');
     AshitaCore:GetChatManager():QueueCommand(-1, '/bind !F1 /lac fwd tpset');
 	AshitaCore:GetChatManager():QueueCommand(-1, '/bind !F2 /lac fwd diset');
 	gFunc.Message('Active Alias - /pup [/lac fwd]');
@@ -485,11 +608,11 @@ end
 
 profile.OnUnload = function()
 
-	AshitaCore:GetChatManager():QueueCommand(1, '/addon unload puphelper');
+	AshitaCore:GetChatManager():QueueCommand(1, '/addon unload pupassist');
 	
 	-- Bind clean up
 	AshitaCore:GetChatManager():QueueCommand(-1, '/alias delete /pup');
-    AshitaCore:GetChatManager():QueueCommand(-1, '/alias delete /autorepair');
+    AshitaCore:GetChatManager():QueueCommand(-1, '/alias delete /pss');
     AshitaCore:GetChatManager():QueueCommand(-1, '/alias delete /ps');
     AshitaCore:GetChatManager():QueueCommand(-1, '/alias delete /psl');
     AshitaCore:GetChatManager():QueueCommand(-1, '/unbind !F1');
@@ -519,14 +642,6 @@ profile.HandleCommand = function(args)
 				settings.autorepair = false;
 			end
 		end
-	elseif (args[1] == 'automan') then
-		n = 1;
-		if (#args > 2) then
-			while n <= #args do
-				settings.maneuver[n] = args[n];
-				n = n+1;
-			end
-		end
 	elseif (args[1] == 'autowstp') then --Cancel Aftermath
         if (args[2] ~= '' or args[2] ~= nil) then
             settings.autoWS.minTP = args[2];
@@ -544,13 +659,13 @@ profile.HandleCommand = function(args)
         gFunc.Message('AutoWS Weapon SKill is set to: ' .. chat.success(tostring(settings.autoWS.useWS)));
     elseif (args[1] == 'autows') then
         if (args[2] == '' or args[2] == nil) then
-            gFunc.Messages('Auto Weapon Skill is currently: ' .. chat.success(tostring(settings.autoWS.active)));
+            gFunc.Message('Auto Weapon Skill is currently: ' .. chat.success(tostring(settings.autoWS.active)));
         elseif (args[2] == 'on') then
             settings.autoWS.active = true;
-            gFunc.Messages('Auto Weapon Skill is currently: ' .. chat.success(tostring(settings.autoWS.active)));
+            gFunc.Message('Auto Weapon Skill is currently: ' .. chat.success(tostring(settings.autoWS.active)));
         elseif (args[2] == 'off') then
             settings.autoWS.active = false;
-            gFunc.Messages('Auto Weapon Skill is currently: ' .. chat.success(tostring(settings.autoWS.active)));
+            gFunc.Message('Auto Weapon Skill is currently: ' .. chat.success(tostring(settings.autoWS.active)));
         end
     end
 end
@@ -567,7 +682,9 @@ profile.HandleDefault = function()
 	local pet = gData.GetPet();
 	local place = gData.GetEnvironment();
 	local target = gData.GetTarget();
+	local charmed = gData.GetBuffCount(14);
     local frame = puplib.GetFrameName();
+	
 	
 	-- *****************************************************
 	-- ********Used for Levelsync gear determination********
@@ -595,7 +712,7 @@ profile.HandleDefault = function()
                 end
 			end
 		end
-        --Auto Weapon Skill
+        --Auto Player Weapon Skill
         if (settings.autoWS.active == true) then
             if (target ~= nil) then
                 if (target.HPP <= tonumber(settings.autoWS.minHP) and player.TP > tonumber(settings.autoWS.minTP)) then
@@ -608,7 +725,7 @@ profile.HandleDefault = function()
 		gFunc.EquipSet(sets.rest);
 
 	elseif (player.Status == 'Idle') then
-        if (towns:contains(place.Area)) then
+        if (towns:contains(place.Area)) then -- If youre in a town and want to wear different armor, maybe an nation Aketon
             gFunc.EquipSet(sets.idle_town);
         else
 		    gFunc.EquipSet(sets.idle);
@@ -634,39 +751,29 @@ profile.HandleDefault = function()
 	if (settings.diset == true) then
 		gFunc.EquipSet(sets.di_set);
 	end
-	
-	if (pet ~= nil) then -- If you have a pet out
-        -- If the automan is true we'll do stuff here
-        if (settings.automa == true) then
-            
-        end
-        -- If autorepair is true we handle here
-        if (settings.autorepair == true) and (pet.HPP <= settings.repairpercent) and settings.usedrepair == false then
-            if string.match(gData.GetEquipment.Range.Name, 'Automat. Oil') then
-                AshitaCore:GetChatManager():QueueCommand(1, '/ja "repair" <me>');
-                settings.usedrepair = true;
-            end
-        end
-
-        if settings.usedrepair == true and (pet.HPP > settings.repairpercent) then
-            settings.usedrepair = false;
-        end
-    
-    end
 
     if (player.SubJob == 'WHM') then
         gFunc.EquipSet(sets.whmsub);
     end
 
-    if player.IsMoving then
+    if (player.IsMoving and settings.EngagedNoMoveSwap ~= true)  then
 		if (myLevel <= 30) then
-			gFunc.Equip('Head', 'Destrier Beret');
+			gFunc.EquipSet(sets.movement1);
 		elseif (myLevel > 30 and myLevel < 69) then
-			gFunc.Equip('Body', 'Kupo Suit');
-			gFunc.Equip('Legs', 'Displaced');
+			gFunc.EquipSet(sets.movement2);
 		else
-			gFunc.Equip('Feet', 'Hermes\' Sandals');
+			gFunc.EquipSet(sets.movement3);
 		end
+    end
+	
+	-- Checks on status effects and make gear changes
+	if (charmed > 0) and (settings.isCharmed == false) then -- if Charmed remove all gear and swap to a -DT set
+        AshitaCore:GetChatManager():QueueCommand(1, '/p ### I\'m CHARMED and getting naked! ###');
+        settings.isCharmed = true;
+		AshitaCore:GetChatManager():QueueCommand(1, '/lac naked');
+    elseif (charmed <= 0) and (settings.isCharmed == true) then
+        settings.isCharmed = false;
+        AshitaCore:GetChatManager():QueueCommand(-1, '/lac enable');
     end
 
 end
@@ -674,20 +781,38 @@ end
 profile.HandleAbility = function()
 
 	local action = gData.GetAction();
+	local aName = {gData.GetAction().Name,};
 
-		if string.match(action.Name, ' Maneuver') then
-			gFunc.EquipSet(sets.maneuver);
-			if (settings.diset == true) then
-				gFunc.EquipSet(sets.di_set);
+		if (aName[1]:contains(' Maneuver')) then
+		
+			if (aName[1]:contains('Fire')) then
+				gFunc.EquipSet(sets.str);
+			elseif (aName[1]:contains('Water')) then
+				gFunc.EquipSet(sets.mnd);
+			elseif (aName[1]:contains('Earth')) then
+				gFunc.EquipSet(sets.vit);
+			elseif (aName[1]:contains('Wind')) then
+				gFunc.EquipSet(sets.agi);
+			elseif (aName[1]:contains('Thunder')) then
+				gFunc.EquipSet(sets.dex);
+			elseif (aName[1]:contains('Ice')) then
+				gFunc.EquipSet(sets.int);
+			elseif (aName[1]:contains('Light')) then
+				gFunc.EquipSet(sets.chr);
+			elseif (aName[1]:contains('Dark')) then
+				-- Dark has no associated stat
 			end
-		elseif (action.Name == 'Repair') then
+			
+			gFunc.EquipSet(sets.maneuver); -- This is for generic pieces like Baffoon Collar and AF gloves, these overwrite pieces in the above sets.
+			
+		elseif (aName[1]:contains('Repair')) then
             gFunc.EquipSet(sets.repair_oils);
 			gFunc.EquipSet(sets.repair_set);
-        elseif (action.Name == 'Maintenance') then
-            gFunc.Equip('Ammo', 'Automaton Oil');
+        elseif (aName[1]:contains('Maintenance')) then
             gFunc.EquipSet(sets.repair_set);
-		elseif string.match(action.Name, 'Waltz') then
+		elseif (aName[1]:contains('Waltz')) then -- Covers all Waltz abilities
 			gFunc.EquipSet(sets.chr);
+			gFunc.EquipSet(sets.waltz); -- Overwrites the chr set with pieces that specifically boost Waltz
 		end
 end
 
@@ -699,10 +824,13 @@ end
 
 profile.HandleMidcast = function()
     local spell = gData.GetAction();
+	local sInfo = {spell.Name, spell.Element};
 
-    if (string.match(spell.Name, 'Cure')) then
-        gFunc.Equip('Ear1', 'Roundel Earring');
+    if (sInfo[1]:contains('Cure')) then -- Covers all Waltz abilities
+		gFunc.EquipSet(sets.mnd);
+		gFunc.EquipSet(sets.cure); -- Overwrites the mnd set with pieces that specifically boost Cure
     end
+	
 end
 
 profile.HandlePreshot = function()
@@ -722,7 +850,7 @@ profile.HandleWeaponskill = function()
     local packet;
 	
 		if (action.Name == 'Stringing Pummel') then
-            if (AM3 > 0 and TP >= 2000) then
+            if (AM3 > 0 and TP >= 1500) then
                 --Cancels Lv.3 Aftermath for PUP
                 buffId = 272;
                 packet = struct.pack('LHH', 0, buffId, 0);
@@ -743,7 +871,7 @@ profile.HandleWeaponskill = function()
 		elseif (action.Name == 'Shijin Spiral') then
 			gFunc.EquipSet('ws_shijin_' .. tpvarianttable[settings.tpvariant]);
 		else
-			gFunc.EquipSet('ws_default_' .. tpvarianttable[settings.tpvariant]);
+			gFunc.EquipSet(sets.ws_str_vit);
 		end
 		
 end

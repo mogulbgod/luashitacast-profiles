@@ -1,6 +1,5 @@
--- Updated 09.29.2024 (MM.DD.YYYY)
--- Small code clean up.
--- Added functioning auto berserk.
+-- Updated 02.10.2026 (MM.DD.YYYY)
+-- Added level sync logic
 -- Added more comments.
 local profile = {};
 require('common');
@@ -10,18 +9,18 @@ require('common');
 -- range_xxxx - these are normal range attack sets; lowacc, medacc, highacc
 local sets = {
 	['idle_Priority'] = {
-        Head = { 'Scout\'s Beret', 'Destrier Beret' },
+        Head = { 'Scout\'s Beret', 'Maat\'s Cap', 'Destrier Beret' },
         Neck = { 'Orochi Nodowa', 'Ranger\'s Necklace' },
         Ear1 = { 'Altdorf\'s Earring', 'Optical Earring' },
         Ear2 = { 'Wilhelm\'s Earring', 'Cassie Earring' },
         Body = { 'Kirin\'s Osode', 'Brigandine +1', 'Eminence Doublet' },
-        Hands = { 'Blood Fng. Gnt.', '', 'Garrison Gloves', 'Ryl.Ftm. Gloves' },
+        Hands = { 'Blood Fng. Gnt.', 'Phl. Dastanas', 'Jaridah Bazubands', 'Garrison Gloves', 'Ryl.Ftm. Gloves' },
         Ring1 = 'Blobnag Ring',
         Ring2 = 'Warp Ring',
         Back = 'Psilos Mantle',
         Waist = 'Scout\'s Belt',
         Legs = { 'Pln. Seraweels',  'Enkidu\'s Subligar', 'Phl. Trousers', 'Solid Cuisses', 'Galkan Braguette' },
-        Feet = { 'Hachiryu Sune-Ate', 'Trotter Boots', 'Leaping Boots' }
+        Feet = { 'Hachiryu Sune-Ate', 'Areion Boots', 'Leaping Boots' }
     },
     ['idle_town'] = {
         Head = 'Scout\'s Beret',
@@ -43,7 +42,7 @@ local sets = {
         Ear1 = { 'Hollow Earring', 'Optical Earring' },
         Ear2 = { 'Megasco Earring', 'Ethereal Earring', 'Wilder. Earring +1', 'Cassie Earring' },
         Body = { 'Pln. Khazagand', 'Brigandine +1', 'Eminence Doublet' },
-        Hands = { 'Blood Fng. Gnt.', 'Garrison Gloves', 'Ryl.Ftm. Gloves' },
+        Hands = { 'Blood Fng. Gnt.', 'Pln. Dastanas', 'Jaridah Bazubands', 'Garrison Gloves', 'Ryl.Ftm. Gloves' },
         Ring1 = { 'Rajas Ring', 'San d\'Orian Ring' },
         Ring2 = { 'Sniper\'s Ring +1', 'Jaeger Ring', 'Shikaree Ring', 'Sardonyx Ring' },
         Back = { 'Psilos Mantle', 'Ryl. Army Mantle', 'Nomad\'s Mantle +1', 'Traveler\'s Mantle' },
@@ -205,6 +204,20 @@ local sets = {
         Legs = 'Scout\'s Braccae',
         Feet = 'Hachiryu Sune-Ate',
     },
+	['ws_empyreal_lowacc'] = {
+        Head = { Name = 'Optical Hat', Augment = { [1] = 'Haste+3', [2] = 'HP+15', [3] = 'AGI+3', [4] = 'DEX+3' } },
+        Neck = 'Fotia Gorget',
+        Ear1 = 'Altdorf\'s Earring',
+        Ear2 = 'Wilhelm\'s Earring',
+        Body = 'Pln. Khazagand',
+        Hands = 'Seiryu\'s Kote',
+        Ring1 = 'Blobnag Ring',
+        Ring2 = 'Strigoi Ring',
+        Back = 'Psilos Mantle',
+        Waist = 'Scout\'s Belt',
+        Legs = 'Scout\'s Braccae',
+        Feet = 'Hachiryu Sune-Ate',
+    },
 	['ws_coronach_lowacc'] = {
 	};
 	['ws_coronach_medacc'] = {
@@ -233,17 +246,17 @@ local sets = {
     },
 	['range_ws_lowacc'] = {
         Head = { Name = 'Optical Hat', Augment = { [1] = 'Haste+3', [2] = 'HP+15', [3] = 'AGI+3', [4] = 'DEX+3' } },
-        Neck = 'Ranger\'s Necklace',
+        Neck = 'Fotia Gorget',
         Ear1 = 'Altdorf\'s Earring',
         Ear2 = 'Wilhelm\'s Earring',
         Body = 'Pln. Khazagand',
-        Hands = 'Seiryu\'s Kote',
-        Ring1 = 'Blobnag Ring',
-        Ring2 = 'Strigoi Ring',
+        Hands = { Name = 'Blood Fng. Gnt.', Augment = { [1] = '"Subtle Blow"+4', [2] = '"Snapshot"+3' } },
+        Ring1 = 'Breeze Ring',
+        Ring2 = 'Blobnag Ring',
         Back = 'Psilos Mantle',
         Waist = 'Scout\'s Belt',
-        Legs = 'Scout\'s Braccae',
-        Feet = 'Hachiryu Sune-Ate',
+        Legs = 'Oily Trousers',
+        Feet = 'Areion Boots',
     },
 	['range_ws_medacc'] = {
         Head = { Name = 'Optical Hat', Augment = { [1] = 'Haste+3', [2] = 'HP+15', [3] = 'AGI+3', [4] = 'DEX+3' } },
@@ -277,9 +290,9 @@ local sets = {
         Head = { 'Optical Hat', 'Emperor Hairpin' },
         Neck = 'Ranger\'s Necklace',
         Ear1 = 'Altdorf\'s Earring',
-        Ear2 = 'Wilhelm\'s Earring',
-        Body = { Name = 'Kirin\'s Osode', Augment = { [1] = 'Accuracy+5', [2] = 'Phys. dmg. taken -5%', [3] = '"Regen"+2' } },
-        Hands = 'Blood Fng. Gnt.',
+        Ear2 = { 'Wilhelm\'s Earring', 'Wilder. Earring +1' },
+        Body = { 'Kirin\'s Osode', 'Pln. Khazagand', 'Brigandine +1', 'Eminence Doublet' },
+        Hands = { 'Blood Fng. Gnt.', 'Pln. Dastanas', 'Jaridah Bazubands' },
         Ring1 = { 'Rajas Ring', 'San d\'Orian Ring' },
         Ring2 = { 'Merman\'s Ring', 'Jalzahn\'s Ring', 'Jaeger Ring', 'Shikaree Ring' },
         Back = { 'Psilos Mantle', 'Nomad\'s Mantle +1' },
@@ -345,10 +358,10 @@ local sets = {
     },
     ['kite_set'] = {
         Main = 'Earth Staff',
-        Feet = 'Trotter Boots',
+        Feet = 'Areion Boots',
     },
 	['movement'] = {
-        Feet = 'Trotter Boots',
+        Feet = 'Areion Boots',
     },
 	['sleepset'] = {
         Neck = 'Opo-opo Necklace',
@@ -761,11 +774,9 @@ profile.HandleCommand = function(args)
 		gFunc.Message('DI Set is set to: ' .. string.upper(tostring(settings.diset)));
 		gFunc.Message('Auto Berserk is set to: ' .. string.upper(tostring(settings.autoberserk)));
 		gFunc.Message('Auto Hasso is set to: ' .. string.upper(tostring(settings.autohasso)));
-	elseif (args[1] == 'test') then
-		--local theplayer = GetPlayerEntity();
-        --if (theplayer ~= nil) then
-        --    gFunc.Message(theplayer.Heading);
-        --  end    
+	elseif (args[1] == 'test') then -- Just for testing
+        local rw = gData.GetEnvironment()
+        gFunc.Message(rw.Timestamp.hour);   
 	else
 		gFunc.Message(args[1] .. ' is an UNKNOWN Command');
 	end
@@ -934,7 +945,7 @@ profile.HandlePreshot = function()
         if (AmmoCount < settings.low_ammo_amount) then
             gFunc.Message('Current ammo count[ ' .. tostring(AmmoCount) .. ' ] is below minimum[ ' .. tostring(settings.low_ammo_amount) .. ' ] allowed.');
             if (settings.audible_low_ammo_warning == true) then Play_Sound('low_ammo.wav') end
-        elseif (AmmoCount == 0) then
+        elseif (AmmoCount == 0) or (AmmoCount == nil) then
             gFunc.Error('You are out of ammo.')
             if (settings.audible_zero_ammo_alert == true) then Play_Sound('out_of_ammo.wav') end
             gFunc.CancelAction();
@@ -1013,7 +1024,9 @@ profile.HandleWeaponskill = function()
 		gFunc.EquipSet('ws_laststand_' .. rangevartable[settings.rangevariant]);
     elseif (action.Name == 'Sidewinder') or (action.Name == 'Slug Shot') then
         gFunc.EquipSet(sets.ws_slug_sidewinder);
-    else
+    elseif (action.Name == 'Empyreal Arrow') then -- Aeonic gun WS
+		gFunc.EquipSet('ws_empyreal_' .. rangevartable[settings.rangevariant]);
+	else
 		-- This handles ALL other WS not listed above
 		-- Copy and paste from "elseif" to the end of the gFunc.EquipSet line
 		-- to add other WSs including melee.

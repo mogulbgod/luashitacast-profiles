@@ -195,6 +195,14 @@ local sets = {
         Legs = 'Sorcerer\'s Tonban',
         Feet = 'Dune Sandals',
     },
+	['aspir'] = {
+		Ear1 = 'Hirudinea Earring',
+		Waist = 'Charmer\'s Sash',
+    },
+	['drain'] = {
+		Ear1 = 'Hirudinea Earring',
+		Waist = 'Charmer\'s Sash',
+    },
 };
 
 local settings = T{
@@ -233,6 +241,9 @@ local elements = T{
     ['Unknown'] = T{'Wizzan Grip'},
     ['Non-Elemental'] = T{'Wizzan Grip'},
 };
+
+local staves = T{ 'Chatoyant Staff' }; --Add the name of any staves you use here for casting any spells
+
 local ToRoman = T{'I', 'II', 'III', 'IV', 'V'};
 
 local Towns = T{'Aht Urhgan Whitegate', 'Al Zahbi', 'Bastok Markets [S]', 'Bastok Markets', 'Bastok Mines', 'Bastok-Jeuno Airship', 'Celennia Memorial Library', 'Chateau d\'Oraguille', 'Eastern Adoulin', 'Heavens Tower', 'Kazham', 'Kazham-Jeuno Airship', 'Lower Jeuno', 'Metalworks', 'Mhaura', 'Mog Garden', 'Nashmau', 'Norg', 'Northern San d\'Oria', 'Port Bastok', 'Port Jeuno', 'Port San d\'Oria', 'Port Windurst', 'Rabao', 'Ru\'Lude Gardens', 'San d\'Oria-Jeuno Airship', 'Selbina', 'Southern San d\'Oria [S]', 'Southern San d\'Oria', 'Tavnazian Safehold', 'Upper Jeuno', 'Western Adoulin', 'Windurst Walls', 'Windurst Waters [S]', 'Windurst Waters', 'Windurst Woods', 'Windurst-Jeuno Airship',};
@@ -310,6 +321,8 @@ profile.OnLoad = function()
 
     AshitaCore:GetChatManager():QueueCommand(1, '/macro book 19');
     AshitaCore:GetChatManager():QueueCommand(1, '/macro set 1'); -- Default macro palete
+	
+	AshitaCore:GetChatManager():QueueCommand(1, '/lockstyleset 053'); -- Uses and equipset macro to lockstyle to
 
 end
 
@@ -459,8 +472,10 @@ profile.HandleMidcast = function()
     --Buffer to store your equipment set for midcast.
     local midcastSet;
 
-
-    gFunc.Equip('Sub', elements[spell.Element][1]);
+	local main = gData.GetEquipment().Main;
+    if (staves:contains(main.Name)) then
+		gFunc.Equip('Sub', elements[spell.Element][1]);
+	end
 
 
     if (spell.Skill == 'Enhancing Magic') then
@@ -519,11 +534,11 @@ profile.HandleMidcast = function()
         gFunc.EquipSet(sets.nukes);
         gFunc.EquipSet(sets.dark);
 
-        if string.match(spell.Name, 'Drain') then
-            gFunc.Equip('Ear2', 'Hirudinea Earring');
-        elseif string.match(spell.Name, 'Aspir') then
-            gFunc.Equip('Ear2', 'Hirudinea Earring');
-        end
+        if (spell.Name:contains('Drain')) then -- Covers Drain 1 and 2
+			gFunc.EquipSet(sets.drain);
+		elseif (spell.Name == 'Aspir') then
+			gFunc.EquipSet(sets.aspire);
+		end
 
     end
 

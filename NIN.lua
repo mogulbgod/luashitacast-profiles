@@ -23,7 +23,7 @@ local sets = {
         Ear2 = 'Suppanomimi',
         Body = 'Kog. Chainmail +1',
         Hands = 'Koga Tekko',
-        Ring1 = 'Alert Ring',
+        Ring1 = 'Succor Ring',
         Ring2 = 'Rajas Ring',
         Back = 'Forager\'s Mantle',
         Waist = 'Ninurta\'s Sash',
@@ -225,7 +225,9 @@ local sets = {
         Ammo = 'Koga Shuriken',
     },
     ['movement'] = {
-        Feet = '',
+        Body = 'Kupo Suit',
+		Legs = 'Displaced',
+		Feet = '',
     },
     ['ws_dex'] = {
         Head = 'Maat\'s Cap',
@@ -374,7 +376,6 @@ end
 profile.HandleDefault = function()
     local player = gData.GetPlayer();
     local zone = gData.GetEnvironment();
-	local myLevel = AshitaCore:GetMemoryManager():GetPlayer():GetMainJobLevel();
 	local night = false;
 	
     -- *****************************************************

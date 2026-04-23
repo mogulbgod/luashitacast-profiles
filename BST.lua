@@ -87,7 +87,7 @@ local sets = {
     },
     ['ws_dex'] = {
         Head = 'Askar Zucchetto',
-        Neck = 'Halting Stole',
+        Neck = 'Fotia Gorget',
         Ear1 = 'Pixie Earring',
         Ear2 = 'Bushinomimi',
         Body = { Name = 'Kirin\'s Osode', Augment = { [1] = 'Accuracy+5', [2] = 'Phys. dmg. taken -5%', [3] = '"Regen"+2' } },
@@ -100,17 +100,16 @@ local sets = {
         Feet = 'Adsilio Boots +1',
     },
     ['ws_str'] = {
-        Ammo = 'Tiphia Sting',
         Head = 'Conqueror\'s Helm',
         Neck = 'Fotia Gorget',
-        Ear1 = 'Brutal Earring',
-        Ear2 = 'Bushinomimi',
+        Ear1 = 'Bushinomimi',
+        Ear2 = 'Flame Earring',
         Body = { Name = 'Kirin\'s Osode', Augment = { [1] = 'Accuracy+5', [2] = 'Phys. dmg. taken -5%', [3] = '"Regen"+2' } },
         Hands = 'Alkyoneus\'s Brc.',
         Ring1 = 'Flame Ring',
         Ring2 = 'Strigoi Ring',
         Back = 'Forager\'s Mantle',
-        Waist = 'Warwolf Belt',
+        Waist = 'Bobcat Belt',
         Legs = 'Aurum Cuisses',
         Feet = 'Agrona\'s Leggings',
     },
@@ -130,17 +129,17 @@ local sets = {
     },
     ['callbeast'] = {
         Head = 'Maat\'s Cap',
-        Neck = 'Beast Whistle',
+        Neck = 'Temp. Torque',
         Ear1 = 'Delta Earring',
-        --Ear2 = 'Megasco Earring',
+        Ear2 = 'Pagondas Earring',
         Body = { Name = 'Kirin\'s Osode', Augment = { [1] = 'Accuracy+5', [2] = 'Phys. dmg. taken -5%', [3] = '"Regen"+2' } },
-        Hands = 'Trainer\'s Gloves',
-        Ring1 = 'Angel\'s Ring',
+        Hands = 'Monster Gloves',
+        Ring1 = 'Veela Ring',
         Ring2 = 'Light Ring',
         Back = { Name = 'Fidelity Mantle', Augment = { [1] = 'Attack+3', [2] = 'HP+6', [3] = 'DEF+3', [4] = 'MP+6' } },
         Waist = 'Monster Belt',
         Legs = 'Cln. Subligar +1',
-        Feet = 'Dune Sandals',
+        Feet = 'Siren\'s Sollerets',
     },
     ['reward'] = {
         Head = 'Monster Helm',
@@ -187,6 +186,20 @@ local sets = {
     },
     ['pet_matk'] = {
     },
+    ['bestial'] = {
+        Head = 'Maat\'s Cap',
+        Neck = 'Temp. Torque',
+        Ear1 = 'Delta Earring',
+        Ear2 = 'Pagondas Earring',
+        Body = { Name = 'Kirin\'s Osode', Augment = { [1] = 'Accuracy+5', [2] = 'Phys. dmg. taken -5%', [3] = '"Regen"+2' } },
+        Hands = 'Trainer\'s Gloves',
+        Ring1 = 'Veela Ring',
+        Ring2 = 'Light Ring',
+        Back = { Name = 'Fidelity Mantle', Augment = { [1] = 'Attack+3', [2] = 'HP+6', [3] = 'DEF+3', [4] = 'MP+6' } },
+        Waist = 'Monster Belt',
+        Legs = 'Cln. Subligar +1',
+        Feet = 'Siren\'s Sollerets',
+    },
 };
 
 local Towns = T{'Aht Urhgan Whitegate','Al Zahbi','Bastok Markets [S]','Bastok Markets','Bastok Mines','Bastok-Jeuno Airship','Celennia Memorial Library','Chateau d\'Oraguille','Eastern Adoulin','Heavens Tower','Kazham','Kazham-Jeuno Airship','Lower Jeuno','Metalworks','Mhaura','Mog Garden','Nashmau','Norg','Northern San d\'Oria','Port Bastok','Port Jeuno','Port San d\'Oria','Port Windurst','Rabao','Ru\'Lude Gardens','San d\'Oria-Jeuno Airship','Selbina','Southern San d\'Oria [S]','Southern San d\'Oria','Tavnazian Safehold','Upper Jeuno','Western Adoulin','Windurst Walls','Windurst Waters [S]','Windurst Waters','Windurst Woods','Windurst-Jeuno Airship',};
@@ -195,6 +208,7 @@ local BstPetMagicAttack = T{'Gloom Spray','Fireball','Acid Spray','Molting Pluma
 local BstPetMagicAccuracy = T{'Toxic Spit','Acid Spray','Leaf Dagger','Venom Spray','Venom','Dark Spore','Sandblast','Dust Cloud','Stink Bomb','Slug Family','Intimidate','Gloeosuccus','Spider Web','Filamented Hold','Choke Breath','Blaster','Snow Cloud','Roar','Palsy Pollen','Spore','Brain Crush','Choke Breath','Silence Gas','Chaotic Eye','Sheep Song','Soporific','Predatory Glare','Sudden Lunge','Numbing Noise','Jettatura','Bubble Shower','Spoil','Scream','Noisome Powder','Acid Mist','Rhinowrecker','Swooping Frenzy','Venom Shower','Corrosive Ooze','Spiral Spin','Infrasonics','Hi-Freq Field','Purulent Ooze','Foul Waters','Sandpit','Infected Leech','Pestilent Plume'};
 
 local JugNames = T{'Sun Water', 'C. Carrion Broth'};
+local NoCallJugs = T{'Sun Water', 'Fun Dip', 'W. Meat Broth', 'Meat Broth'};
 
 local settings = {
 	tpvariant = 1,
@@ -380,6 +394,7 @@ profile.HandleAbility = function()
 
     local ability = gData.GetAction();
     local player = gData.GetPlayer();
+	local ammoslot = gData.GetEquipment().Ammo.Name;
 
     if (ability.Name == 'Charm') then
         gFunc.EquipSet(sets.charm);
@@ -398,11 +413,15 @@ profile.HandleAbility = function()
     elseif (ability.Name == 'Gauge') then
         gFunc.EquipSet(sets.charm);
     elseif (ability.Name == 'Call Beast') then
-        gFunc.EquipSet(sets.callbeast);
+		if (NoCallJugs:contains(ammoslot)) then
+			gFunc.Error('Call Beast Abandoned due to a NO CALL jug in slot. [' .. ammoslot .. ']');
+			gFunc.CancelAction();
+		end
+		gFunc.EquipSet(sets.callbeast);
     elseif (ability.Name == 'Ready') then
         gFunc.EquipSet(sets.callbeast);
     elseif (ability.Name == 'Bestial Loyalty') then
-        gFunc.EquipSet(sets.callbeast);
+        gFunc.EquipSet(sets.bestial);
         --gFunc.Equip('Ammo', 'Sun Water');
     elseif (ability.Name == '') then
 
@@ -471,6 +490,8 @@ profile.HandleWeaponskill = function()
         gFunc.EquipSet(sets.ws_str);
     elseif (wskill.Name == 'Spinning Scythe') then -- STR 100%
         gFunc.EquipSet(sets.ws_str);
+	elseif (wskill.Name == 'Ruinator') then -- STR 85%
+        gFunc.EquipSet(sets.ws_str);	
     elseif (wskill.Name == '') then
     end
 
